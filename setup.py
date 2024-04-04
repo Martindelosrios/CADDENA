@@ -3,12 +3,12 @@ from setuptools import setup
 with open("README.md", "r") as fp:
     LONG_DESCRIPTION = fp.read()
 
-REQUIREMENTS = ["numpy", "matplotlib"]
+REQUIREMENTS = ["numpy", "matplotlib", "swyft==0.4.4"]
 
 setup(
     name="BATMAN",
     version="0.1",
-    description="Implementation of ....",
+    description="BAyesian Toolkit for Machine learning ANalysis of direct detection experiments.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     author="Martin de los Rios, Andres Perez & David Cerdeño",
@@ -29,7 +29,6 @@ setup(
         " Operating System :: OS Independent",
         " Programming Language :: Python",
         " Programming Language :: Python :: 3.8",
-        " Programming Language :: Python :: Implementation :: CPython",
         " Topic :: Scientific/Engineering",
     ],
 )
