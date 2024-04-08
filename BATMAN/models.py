@@ -14,6 +14,23 @@ else:
     device = 'cpu'
     print('Using CPU')
 
+# Dataset for testing and loading previously trained models
+
+with h5py.File(DATA_PATH + 'testset.h5', 'r') as data:
+    x_norm_rate  = data['rate_norm'][()]
+    x_norm_drate = data['drate_norm'][()]
+    x_norm_s1s2  = data['s1s2_norm'][()]
+    pars_norm = data['pars_norm'][()]
+
+samples_test_rate = swyft.Samples(x = x_norm_rate, z = pars_norm)
+dm_test_rate = swyft.SwyftDataModule(samples_test_rate, fractions = [0., 0., 1], batch_size = 32)
+
+samples_test_drate = swyft.Samples(x = x_norm_drate, z = pars_norm)
+dm_test_drate = swyft.SwyftDataModule(samples_test_drate, fractions = [0., 0., 1], batch_size = 32)
+
+samples_test_s1s2 = swyft.Samples(x = x_norm_s1s2, z = pars_norm)
+dm_test_s1s2 = swyft.SwyftDataModule(samples_test_s1s2, fractions = [0., 0., 1], batch_size = 32)
+
 
 # Creating model for XENON nT with rate
 class Network_rate(swyft.SwyftModule):
@@ -30,6 +47,9 @@ class Network_rate(swyft.SwyftModule):
 
 trainer_rate = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2000, precision = 64)
 network_rate = Network_rate()
+
+ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
+trainer_rate.test(network_rate, dm_test_rate, ckpt_path = ckpt_path)
 
 comments = '''
 This model was trained with simulations of data expected in XENON nT with 
@@ -77,6 +97,9 @@ class Network_drate(swyft.SwyftModule):
 trainer_drate = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2000, precision = 64)
 network_drate = Network_drate()
 
+ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_drate.yaml")
+trainer_drate.test(network_drate, dm_test_drate, ckpt_path = ckpt_path)
+
 XENONnT_O1_drate = Model(network_drate, trainer_drate, comments = comments)
 
 # S1S2
@@ -116,5 +139,8 @@ class Network_s1s2(swyft.SwyftModule):
 
 trainer_s1s2 = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2500, precision = 64)
 network_s1s2 = Network_s1s2()
+
+ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_s1s2.yaml")
+trainer_s1s2.test(network_s1s2, dm_test_s1s2, ckpt_path = ckpt_path)
 
 XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments = comments)
