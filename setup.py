@@ -15,7 +15,7 @@ setup(
     author_email=" martindelosrios13@gmail.com ",
     url=" https://github.com/martindelosrios/BATMAN",
     py_modules=["ez_setup"],  # < - - - - - - - aca van los modulos
-    packages=["BATMAN"],  # < - -- - - - - aca van los paquetes
+    packages=["BATMAN", "dataset"],  # < - -- - - - - aca van los paquetes
     exclude_package_data={"": ["tests"]},
     include_package_data=True,  # < - - - - - -- solo si hay datos
     license="The MIT License",
