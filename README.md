@@ -1,4 +1,5 @@
 # BATMAN pacakage
+!(LOGO.png)
 ## Installation
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
