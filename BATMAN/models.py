@@ -3,6 +3,7 @@ import pkg_resources
 import swyft
 import torch
 from BATMAN.batman import Model
+import h5py
 
 DATA_PATH = pkg_resources.resource_filename("BATMAN", "../dataset/")
 
