@@ -1,35 +1,143 @@
-import swyft
 import numpy as np
-from scipy.integrate import trapezoid
-from matplotlib.lines import Line2D
-from scipy.integrate import trapezoid
+import swyft
+from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
-from scipy.integrate import simps
 
-pars_min = np.array([  0.77828586, -49.99947482,  -1.57071   ])
-pars_max = np.array([  2.99964286, -43.00063323,   1.57079   ])
+pars_min = np.array([0.77828586, -49.99947482, -1.57071])
+pars_max = np.array([2.99964286, -43.00063323, 1.57079])
 
 x_min_rate = 3.423245873936808
 x_max_rate = 5.563303059369412
 
-x_min_drate = np.array([ 5.,  3.,  9., 13., 24., 23., 24., 25., 24., 28., 23., 29., 27.,
-       23., 29., 24., 24., 22., 27., 26., 24., 26., 24., 26., 23., 30.,
-       28., 26., 25., 26., 28., 25., 26., 26., 22., 26., 26., 26., 22.,
-       26., 26., 23., 18., 18., 25., 18., 20., 20., 22., 15., 23., 26.,
-       17., 15., 17., 21., 15., 14.])
+x_min_drate = np.array(
+    [
+        5.0,
+        3.0,
+        9.0,
+        13.0,
+        24.0,
+        23.0,
+        24.0,
+        25.0,
+        24.0,
+        28.0,
+        23.0,
+        29.0,
+        27.0,
+        23.0,
+        29.0,
+        24.0,
+        24.0,
+        22.0,
+        27.0,
+        26.0,
+        24.0,
+        26.0,
+        24.0,
+        26.0,
+        23.0,
+        30.0,
+        28.0,
+        26.0,
+        25.0,
+        26.0,
+        28.0,
+        25.0,
+        26.0,
+        26.0,
+        22.0,
+        26.0,
+        26.0,
+        26.0,
+        22.0,
+        26.0,
+        26.0,
+        23.0,
+        18.0,
+        18.0,
+        25.0,
+        18.0,
+        20.0,
+        20.0,
+        22.0,
+        15.0,
+        23.0,
+        26.0,
+        17.0,
+        15.0,
+        17.0,
+        21.0,
+        15.0,
+        14.0,
+    ]
+)
 
-x_max_drate = np.array([34085., 37861., 34987., 31268., 28072., 23940., 21763., 18640.,
-       15812., 15273., 11975., 12328.,  9688., 10264.,  9264.,  7654.,
-        7587.,  6377.,  6071.,  5647.,  5002.,  4686.,  4394.,  3991.,
-        3510.,  3262.,  3138.,  2609.,  2478.,  2360.,  2108.,  1712.,
-        1853.,  1559.,  1310.,  1396.,  1217.,  1044.,   918.,  1127.,
-         838.,   691.,   788.,   668.,   567.,   555.,   592.,   462.,
-         345.,   308.,   194.,   101.,    87.,    69.,    70.,    67.,
-          56.,    64.])
+x_max_drate = np.array(
+    [
+        34085.0,
+        37861.0,
+        34987.0,
+        31268.0,
+        28072.0,
+        23940.0,
+        21763.0,
+        18640.0,
+        15812.0,
+        15273.0,
+        11975.0,
+        12328.0,
+        9688.0,
+        10264.0,
+        9264.0,
+        7654.0,
+        7587.0,
+        6377.0,
+        6071.0,
+        5647.0,
+        5002.0,
+        4686.0,
+        4394.0,
+        3991.0,
+        3510.0,
+        3262.0,
+        3138.0,
+        2609.0,
+        2478.0,
+        2360.0,
+        2108.0,
+        1712.0,
+        1853.0,
+        1559.0,
+        1310.0,
+        1396.0,
+        1217.0,
+        1044.0,
+        918.0,
+        1127.0,
+        838.0,
+        691.0,
+        788.0,
+        668.0,
+        567.0,
+        555.0,
+        592.0,
+        462.0,
+        345.0,
+        308.0,
+        194.0,
+        101.0,
+        87.0,
+        69.0,
+        70.0,
+        67.0,
+        56.0,
+        64.0,
+    ]
+)
 
 
 class Model:
-    '''
+    """
     Class to save trained models
 
     Attributes
@@ -37,8 +145,9 @@ class Model:
 
     Methods
     -------
-    '''
-    def __init__(self, network, trainer, comments = 'No added comments'):
+    """
+
+    def __init__(self, network, trainer, comments="No added comments"):
         self.network = network
         self.trainer = trainer
         self.comments = comments
@@ -49,7 +158,7 @@ class Model:
 
 
 def ratio_estimation(obs, prior, models):
-    '''
+    """
     Function that computes the likelihood-to-evidence ratio
     for the given observation, using the all the
     listed models.
@@ -68,138 +177,225 @@ def ratio_estimation(obs, prior, models):
     Returns
     -------
 
-    List of Likelihood-to-Evidence ratio of the parameters given the observation for
-    all the listed models.
-    '''
-    if len(obs) != len(models): 'The number of observations does not match the number of models'
-    
-    prior_sample = swyft.Samples(z = prior)
-    
+    List of Likelihood-to-Evidence ratio of the parameters given
+    the observation for all the listed models.
+    """
+    if len(obs) != len(models):
+        "The number of observations does not match the number of models"
+
+    prior_sample = swyft.Samples(z=prior)
+
     logratios1D = []
     logratios2D = []
     for imodel, model in enumerate(models):
         print(imodel)
-        obs_sample = swyft.Sample(x = obs[imodel])
+        obs_sample = swyft.Sample(x=obs[imodel])
         output = model.trainer.infer(model.network, obs_sample, prior_sample)
-        logratios1D.append( np.asarray(output[0].logratios) )
-        logratios2D.append( np.asarray(output[1].logratios) )
+        logratios1D.append(np.asarray(output[0].logratios))
+        logratios2D.append(np.asarray(output[1].logratios))
 
     return logratios1D, logratios2D
 
 
-def plot1d(ax, predictions, pars_prior, pars_true, par = 1, 
-           xlabel = '$\log_{10}(\sigma)$', ylabel = '$P(\sigma|x)\ /\ P(\sigma)$',
-           flip = False, fill = True, linestyle = 'solid', color = 'black', fac = 1):
+def plot1d(
+    ax,
+    predictions,
+    pars_prior,
+    pars_true,
+    par=1,
+    xlabel="$\log_{10}(\sigma)$",
+    ylabel="$P(\sigma|x)\ /\ P(\sigma)$",
+    flip=False,
+    fill=True,
+    linestyle="solid",
+    color="black",
+    fac=1,
+):
     # Let's put the results in arrays
-    parameter = pars_prior[:,par] * (pars_max[par] - pars_min[par]) + pars_min[par]
-    ratios = np.zeros_like(predictions[0][:,par])
+    parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par]) + pars_min[par]
+    ratios = np.zeros_like(predictions[0][:, par])
     for pred in predictions:
-        ratios = ratios + np.asarray(pred[:,par])
+        ratios = ratios + np.asarray(pred[:, par])
     ratios = np.exp(ratios)
-    
-    ind_sort  = np.argsort(parameter)
-    ratios    = ratios[ind_sort]
+
+    ind_sort = np.argsort(parameter)
+    ratios = ratios[ind_sort]
     parameter = parameter[ind_sort]
-    
+
     # Let's compute the integrated probability for different threshold
     cuts = np.linspace(np.min(ratios), np.max(ratios), 100)
     integrals = []
     for c in cuts:
         ratios0 = np.copy(ratios)
-        ratios0[np.where(ratios < c)[0]] = 0 
-        integrals.append( trapezoid(ratios0, parameter) / trapezoid(ratios, parameter) )
-        
+        ratios0[np.where(ratios < c)[0]] = 0
+        integrals.append(trapezoid(ratios0, parameter) / trapezoid(ratios, parameter))
+
     integrals = np.asarray(integrals)
-    
+
     # Let's compute the thresholds corresponding to 0.9 and 0.95 integrated prob
-    cut90 = cuts[np.argmin( np.abs(integrals - 0.9))]
-    cut95 = cuts[np.argmin( np.abs(integrals - 0.95))]
+    cut90 = cuts[np.argmin(np.abs(integrals - 0.9))]
+    cut95 = cuts[np.argmin(np.abs(integrals - 0.95))]
 
     if not flip:
-        ax.plot(10**parameter, fac * ratios, c = color, linestyle = linestyle)
+        ax.plot(10**parameter, fac * ratios, c=color, linestyle=linestyle)
         if fill:
             ind = np.where(ratios > cut90)[0]
-            ax.fill_between(10**parameter[ind], fac * ratios[ind], [0] * len(ind), color = 'darkcyan', alpha = 0.3)
+            ax.fill_between(
+                10 ** parameter[ind],
+                fac * ratios[ind],
+                [0] * len(ind),
+                color="darkcyan",
+                alpha=0.3,
+            )
             ind = np.where(ratios > cut95)[0]
-            ax.fill_between(10**parameter[ind], fac * ratios[ind], [0] * len(ind), color = 'darkcyan', alpha = 0.5)
-        ax.axvline(x = 10**(pars_true[par] * (pars_max[par] - pars_min[par]) + pars_min[par]), color = 'black')
+            ax.fill_between(
+                10 ** parameter[ind],
+                fac * ratios[ind],
+                [0] * len(ind),
+                color="darkcyan",
+                alpha=0.5,
+            )
+        ax.axvline(
+            x=10 ** (pars_true[par] * (pars_max[par] - pars_min[par]) + pars_min[par]),
+            color="black",
+        )
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
-        ax.set_xscale('log')
+        ax.set_xscale("log")
     else:
-        ax.plot(fac * ratios, 10**parameter, c = color, linestyle = linestyle)
+        ax.plot(fac * ratios, 10**parameter, c=color, linestyle=linestyle)
         if fill:
             ind = np.where(ratios > cut90)[0]
-            ax.fill_betweenx(10**parameter[ind], [0] * len(ind), fac * ratios[ind], color = 'darkcyan', alpha = 0.3)
+            ax.fill_betweenx(
+                10 ** parameter[ind],
+                [0] * len(ind),
+                fac * ratios[ind],
+                color="darkcyan",
+                alpha=0.3,
+            )
             ind = np.where(ratios > cut95)[0]
-            ax.fill_betweenx(10**parameter[ind], [0] * len(ind), fac * ratios[ind], color = 'darkcyan', alpha = 0.5) 
-        ax.axhline(y = 10**(pars_true[par] * (pars_max[par] - pars_min[par]) + pars_min[par]), color = 'black')
+            ax.fill_betweenx(
+                10 ** parameter[ind],
+                [0] * len(ind),
+                fac * ratios[ind],
+                color="darkcyan",
+                alpha=0.5,
+            )
+        ax.axhline(
+            y=10 ** (pars_true[par] * (pars_max[par] - pars_min[par]) + pars_min[par]),
+            color="black",
+        )
         ax.set_xlabel(ylabel)
         ax.set_ylabel(xlabel)
-        #ax.set_xlim(-0.1,8)
+        # ax.set_xlim(-0.1,8)
         ax.set_ylim(1e-50, 1e-42)
-        ax.set_yscale('log')
-        
+        ax.set_yscale("log")
+
     return ax
 
 
-def plot2d(ax, predictions, pars_prior, pars_true, fill = True, line = False, linestyle = 'solid', color = 'black'):    
-    
-    #results_pars = np.asarray(predictions[0][1].params)
-    results_pars = pars_prior #* (pars_max - pars_min) + pars_min
-    
-    results = np.zeros_like(predictions[0][:,0])
+def plot2d(
+    ax,
+    predictions,
+    pars_prior,
+    pars_true,
+    fill=True,
+    line=False,
+    linestyle="solid",
+    color="black",
+):
+
+    # results_pars = np.asarray(predictions[0][1].params)
+    results_pars = pars_prior  # * (pars_max - pars_min) + pars_min
+
+    results = np.zeros_like(predictions[0][:, 0])
     for pred in predictions:
-        results = results + np.asarray(pred[:,0])
-    
-    # Let's make an interpolation function 
-    interp = CloughTocher2DInterpolator(results_pars[:,0:2], np.exp(results))
-    
+        results = results + np.asarray(pred[:, 0])
+
+    # Let's make an interpolation function
+    interp = CloughTocher2DInterpolator(results_pars[:, 0:2], np.exp(results))
+
     def interpol(log_m, log_sigma):
         m_norm = (log_m - pars_min[0]) / (pars_max[0] - pars_min[0])
         sigma_norm = (log_sigma - pars_min[1]) / (pars_max[1] - pars_min[1])
         return interp(m_norm, sigma_norm)
-        
+
     # Let's estimate the value of the posterior in a grid
     nvals = 20
     m_values = np.logspace(0.8, 2.99, nvals)
-    s_values = np.logspace(-49., -43.1, nvals)
+    s_values = np.logspace(-49.0, -43.1, nvals)
     m_grid, s_grid = np.meshgrid(m_values, s_values)
-    
+
     ds = np.log10(s_values[1]) - np.log10(s_values[0])
     dm = np.log10(m_values[1]) - np.log10(m_values[0])
-    
+
     res = np.zeros((nvals, nvals))
     for m in range(nvals):
         for s in range(nvals):
-            res[m,s] = interpol(np.log10(m_values[m]), np.log10(s_values[s]))
+            res[m, s] = interpol(np.log10(m_values[m]), np.log10(s_values[s]))
     res[np.isnan(res)] = 0
     # Let's compute the integral
     norm = simps(simps(res, dx=dm, axis=1), dx=ds)
-    
+
     # Let's look for the 0.9 probability threshold
     cuts = np.linspace(np.min(res), np.max(res), 100)
     integrals = []
     for c in cuts:
         res0 = np.copy(res)
         res0[np.where(res < c)[0], np.where(res < c)[1]] = 0
-        integrals.append( simps(simps(res0, dx=dm, axis=1), dx=ds) / norm )
+        integrals.append(simps(simps(res0, dx=dm, axis=1), dx=ds) / norm)
     integrals = np.asarray(integrals)
-    
-    cut90 = cuts[np.argmin( np.abs(integrals - 0.9))]
-    cut95 = cuts[np.argmin( np.abs(integrals - 0.95))]
+
+    cut90 = cuts[np.argmin(np.abs(integrals - 0.9))]
+    cut95 = cuts[np.argmin(np.abs(integrals - 0.95))]
     if fill:
-        ax.contourf(m_values, s_values, res.T, levels = [0, cut90, np.max(res)], colors = ['white','darkcyan'], alpha = 0.3, linestyles = ['solid'])
-        ax.contourf(m_values, s_values, res.T, levels = [0, cut95, np.max(res)], colors = ['white','darkcyan'], alpha = 0.5, linestyles = ['solid'])
+        ax.contourf(
+            m_values,
+            s_values,
+            res.T,
+            levels=[0, cut90, np.max(res)],
+            colors=["white", "darkcyan"],
+            alpha=0.3,
+            linestyles=["solid"],
+        )
+        ax.contourf(
+            m_values,
+            s_values,
+            res.T,
+            levels=[0, cut95, np.max(res)],
+            colors=["white", "darkcyan"],
+            alpha=0.5,
+            linestyles=["solid"],
+        )
     if line:
-        ax.contour(m_values, s_values, res.T, levels = [0,cut90], colors = [color], linestyles = ['solid'])
-        ax.contour(m_values, s_values, res.T, levels = [0,cut95], colors = [color], linestyles = ['--'])
-    
-    ax.axvline(x = 10**(pars_true[0] * (pars_max[0] - pars_min[0]) + pars_min[0]), color = 'black')
-    ax.axhline(y = 10**(pars_true[1] * (pars_max[1] - pars_min[1]) + pars_min[1]), color = 'black')
-    ax.set_xscale('log')
-    ax.set_yscale('log')
-    ax.set_xlabel('$M_{DM}$ [GeV]')
-    ax.set_ylabel('$\sigma$ $[cm^{2}]$')
+        ax.contour(
+            m_values,
+            s_values,
+            res.T,
+            levels=[0, cut90],
+            colors=[color],
+            linestyles=["solid"],
+        )
+        ax.contour(
+            m_values,
+            s_values,
+            res.T,
+            levels=[0, cut95],
+            colors=[color],
+            linestyles=["--"],
+        )
+
+    ax.axvline(
+        x=10 ** (pars_true[0] * (pars_max[0] - pars_min[0]) + pars_min[0]),
+        color="black",
+    )
+    ax.axhline(
+        y=10 ** (pars_true[1] * (pars_max[1] - pars_min[1]) + pars_min[1]),
+        color="black",
+    )
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("$M_{DM}$ [GeV]")
+    ax.set_ylabel("$\sigma$ $[cm^{2}]$")
 
     return ax
