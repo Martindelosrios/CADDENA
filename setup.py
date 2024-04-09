@@ -3,7 +3,7 @@ from setuptools import setup
 with open("README.md", "r") as fp:
     LONG_DESCRIPTION = fp.read()
 
-REQUIREMENTS = ["numpy", "matplotlib", "swyft==0.4.4", "h5py"]
+REQUIREMENTS = ["numpy", "matplotlib", "swyft==0.4.4", "h5py", "scipy"]
 
 setup(
     name="BATMAN",

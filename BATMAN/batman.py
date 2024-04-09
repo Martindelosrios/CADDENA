@@ -1,5 +1,10 @@
 import swyft
 import numpy as np
+from scipy.integrate import trapezoid
+from matplotlib.lines import Line2D
+from scipy.integrate import trapezoid
+from scipy.interpolate import CloughTocher2DInterpolator
+from scipy.integrate import simps
 
 pars_min = np.array([  0.77828586, -49.99947482,  -1.57071   ])
 pars_max = np.array([  2.99964286, -43.00063323,   1.57079   ])
