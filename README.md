@@ -1,4 +1,4 @@
-# BATMAN pacakage
+# BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 ![logo](LOGO.png)
 ## Installation
 
