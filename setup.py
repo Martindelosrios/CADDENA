@@ -18,7 +18,7 @@ setup(
     packages=["BATMAN", "BATMAN.dataset"],  # < - -- - - - - aca van los paquetes
     #exclude_package_data={"": ["tests"]},
     include_package_data=True,  # < - - - - - -- solo si hay datos
-    package_data={'BATMAN':['dataset/*.h5']},
+    package_data={'BATMAN':['dataset/*']},
     license="The MIT License",
     install_requires=REQUIREMENTS,
     keywords=["BATMAN", "Dark matter"],
