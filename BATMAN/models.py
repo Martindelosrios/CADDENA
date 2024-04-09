@@ -49,8 +49,8 @@ class Network_rate(swyft.SwyftModule):
 trainer_rate = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2000, precision = 64)
 network_rate = Network_rate()
 
-ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
-trainer_rate.test(network_rate, dm_test_rate, ckpt_path = ckpt_path)
+#ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
+trainer_rate.test(network_rate, dm_test_rate, ckpt_path = DATA_PATH + 'O1_rate.ckpt')
 
 comments = '''
 This model was trained with simulations of data expected in XENON nT with 
@@ -98,8 +98,8 @@ class Network_drate(swyft.SwyftModule):
 trainer_drate = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2000, precision = 64)
 network_drate = Network_drate()
 
-ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_drate.yaml")
-trainer_drate.test(network_drate, dm_test_drate, ckpt_path = ckpt_path)
+#ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_drate.yaml")
+trainer_drate.test(network_drate, dm_test_drate, ckpt_path = DATA_PATH + 'O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt')
 
 XENONnT_O1_drate = Model(network_drate, trainer_drate, comments = comments)
 
@@ -141,7 +141,7 @@ class Network_s1s2(swyft.SwyftModule):
 trainer_s1s2 = swyft.SwyftTrainer(accelerator = device, devices=1, max_epochs = 2500, precision = 64)
 network_s1s2 = Network_s1s2()
 
-ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_s1s2.yaml")
-trainer_s1s2.test(network_s1s2, dm_test_s1s2, ckpt_path = ckpt_path)
+#ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_s1s2.yaml")
+trainer_s1s2.test(network_s1s2, dm_test_s1s2, ckpt_path = DATA_PATH + 'O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt')
 
 XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments = comments)
