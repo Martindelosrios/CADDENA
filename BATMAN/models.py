@@ -5,7 +5,7 @@ import torch
 from BATMAN.batman import Model
 import h5py
 
-DATA_PATH = pkg_resources.resource_filename("BATMAN", "../dataset/")
+DATA_PATH = pkg_resources.resource_filename("BATMAN", "dataset/")
 
 # Check if gpu is available
 if torch.cuda.is_available():

@@ -16,8 +16,9 @@ setup(
     url=" https://github.com/martindelosrios/BATMAN",
     py_modules=["ez_setup"],  # < - - - - - - - aca van los modulos
     packages=["BATMAN", "BATMAN.dataset"],  # < - -- - - - - aca van los paquetes
-    exclude_package_data={"": ["tests"]},
+    #exclude_package_data={"": ["tests"]},
     include_package_data=True,  # < - - - - - -- solo si hay datos
+    package_data={'BATMAN':['dataset/*.h5']},
     license="The MIT License",
     install_requires=REQUIREMENTS,
     keywords=["BATMAN", "Dark matter"],
