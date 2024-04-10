@@ -1,5 +1,6 @@
 import numpy as np
 import swyft
+import h5py
 
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
