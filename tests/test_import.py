@@ -84,7 +84,7 @@ def createModel():
     marginal posteriors of combination of parameters.
     """
     XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments=comments) 
-    return XENONnt_O1_s1s2
+    return XENONnT_O1_s1s2
 
 def test_createModel():
     comments = """
@@ -97,5 +97,5 @@ def test_createModel():
     marginal posteriors of combination of parameters.
     """
 
-    XENONnt_O1_s1s2 = createModel()
-    assert XENONnt_O1_s1s2.comments == comments 
+    XENONnT_O1_s1s2 = createModel()
+    assert XENONnT_O1_s1s2.comments == comments 
