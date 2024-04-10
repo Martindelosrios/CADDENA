@@ -1,5 +1,6 @@
 import h5py
 import swyft
+import torch
 from importlib_resources import files
 
 
@@ -18,6 +19,15 @@ def test_importtestset():
     assert pars_norm[0, 0] == 0.3719487741506609
 
 def createModel():
+    # Check if gpu is available
+    if torch.cuda.is_available():
+        device = "gpu"
+        print("Using GPU")
+    else:
+        device = "cpu"
+        print("Using CPU")
+
+
     class NetworkS1s2(swyft.SwyftModule):
         def __init__(self, lr=1e-3, gamma=1.0):
             super().__init__()
