@@ -3,7 +3,7 @@ from importlib_resources import files
 import swyft
 import torch
 #from BATMAN.batman import Model
-
+import BATMAN
 
 def importtestset():
     ref = files("BATMAN") / "dataset/"
@@ -83,7 +83,7 @@ def createModel():
     You can extract the 1D marginal posteriors of each parameter or the 2D
     marginal posteriors of combination of parameters.
     """
-    XENONnT_O1_s1s2 = batman.Model(network_s1s2, trainer_s1s2, comments=comments) 
+    #XENONnT_O1_s1s2 = batman.Model(network_s1s2, trainer_s1s2, comments=comments) 
     return comments#XENONnt_O1_s1s2
 
 def test_createModel():
