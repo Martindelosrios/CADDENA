@@ -73,12 +73,6 @@ def createModel():
     )
     network_s1s2 = NetworkS1s2()
     
-    trainer_s1s2.test(
-        network_s1s2,
-        dm_test_s1s2,
-        ckpt_path=DATA_PATH + "O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
-    )
-    
     comments = """
     This model was trained with simulations of s1-s2 data expected in XENON nT with 
     an eft O1 dark matter model, varying the dark matter mass, the
