@@ -5,27 +5,22 @@ from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
 from importlib_resources import files
 
-ref = files("BATMAN") / "dataset/"
-DATA_PATH = str(ref)
-with h5py.File(DATA_PATH + "testset.h5", "r") as data:
-    pars_min = data.attrs["pars_min"]
-    pars_max = data.attrs["pars_max"]
-    x_min_rate = data.attrs["x_min_rate"]
-    x_max_rate = data.attrs["x_max_rate"]
-    x_min_drate = data.attrs["x_min_drate"]
-    x_max_drate = data.attrs["x_max_drate"]
-
-
 
 class Model:
     """
     Class to save trained models
 
-    Attributes
+    Parameters
     ----------
 
-    Methods
-    -------
+    network: swyft.network object that contains the network
+             that would be saved.
+
+    trainer: swyft.trainer object that contains the trainer
+             of the trained network.
+
+    comments: str. with all the information of the trained network.
+
     """
 
     def __init__(self, network, trainer, comments="No added comments"):
@@ -76,6 +71,21 @@ def ratio_estimation(obs, prior, models):
         logratios2d.append(np.asarray(output[1].logratios))
 
     return logratios1d, logratios2d
+
+# This data is needed only for the plots
+#  so should not be here!!!
+# I have to tidy a bit the code and put this
+# data inside the plotting function
+ref = files("BATMAN") / "dataset/"
+DATA_PATH = str(ref)
+with h5py.File(DATA_PATH + "testset.h5", "r") as data:
+    pars_min = data.attrs["pars_min"]
+    pars_max = data.attrs["pars_max"]
+    x_min_rate = data.attrs["x_min_rate"]
+    x_max_rate = data.attrs["x_max_rate"]
+    x_min_drate = data.attrs["x_min_drate"]
+    x_max_drate = data.attrs["x_max_drate"]
+
 
 
 def plot1d(

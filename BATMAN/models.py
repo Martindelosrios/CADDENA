@@ -63,24 +63,21 @@ trainer_rate = swyft.SwyftTrainer(
 )
 network_rate = NetworkRate()
 
-# ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
 trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "O1_rate.ckpt")
 
 comments = """
-This model was trained with simulations of data expected in XENON nT with 
+This model was trained with simulations of the total rate expected in XENON nT with 
 an eft O1 dark matter model, varying the dark matter mass, the
-scattering amplitude and the isospin angle.
+scattering amplitude and the isospin angle in the ranges [], [],
+and [] respectively.
 
 You can extract the 1D marginal posteriors of each parameter or the 2D
 marginal posteriors of combination of parameters.
 """
 XENONnT_O1_rate = Model(network_rate, trainer_rate, comments=comments)
 
-# Creating drate
+# Creating drate model
 
-
-# Now let's define a network that estimates all the 1D
-#  and 2D marginal posteriors
 class NetworkDrate(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
         super().__init__()
@@ -99,7 +96,6 @@ class NetworkDrate(swyft.SwyftModule):
             torch.nn.ReLU(),
             torch.nn.Linear(500, 50),
             torch.nn.ReLU(),
-            # torch.nn.Dropout(0.2),
             torch.nn.Linear(50, 5),
         )
         marginals = ((0, 1), (0, 2), (1, 2))
@@ -112,7 +108,6 @@ class NetworkDrate(swyft.SwyftModule):
 
     def forward(self, a, b):
         img = torch.tensor(a["x"])
-        # z   = torch.tensor(B['z'])
         f = self.net(img)
         logratios1 = self.logratios1(f, b["z"])
         logratios2 = self.logratios2(f, b["z"])
@@ -124,20 +119,25 @@ trainer_drate = swyft.SwyftTrainer(
 )
 network_drate = NetworkDrate()
 
-# ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_drate.yaml")
 trainer_drate.test(
     network_drate,
     dm_test_drate,
     ckpt_path=DATA_PATH + "O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
 )
 
+comments = """
+This model was trained with simulations of differential rate expected in XENON nT with 
+an eft O1 dark matter model, varying the dark matter mass, the
+scattering amplitude and the isospin angle in the ranges [], [],
+and [] respectively.
+
+You can extract the 1D marginal posteriors of each parameter or the 2D
+marginal posteriors of combination of parameters.
+"""
 XENONnT_O1_drate = Model(network_drate, trainer_drate, comments=comments)
 
-# S1S2
+# Let's create the S1S2 model
 
-
-# Now let's define a network that estimates all the 1D
-#   and 2D marginal posteriors
 class NetworkS1s2(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
         super().__init__()
@@ -172,7 +172,6 @@ class NetworkS1s2(swyft.SwyftModule):
 
     def forward(self, a, b):
         img = torch.tensor(a["x"])
-        # z   = torch.tensor(b['z'])
         f = self.net(img)
         logratios1 = self.logratios1(f, b["z"])
         logratios2 = self.logratios2(f, b["z"])
@@ -184,11 +183,19 @@ trainer_s1s2 = swyft.SwyftTrainer(
 )
 network_s1s2 = NetworkS1s2()
 
-# ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_s1s2.yaml")
 trainer_s1s2.test(
     network_s1s2,
     dm_test_s1s2,
     ckpt_path=DATA_PATH + "O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
 )
 
+comments = """
+This model was trained with simulations of s1-s2 data expected in XENON nT with 
+an eft O1 dark matter model, varying the dark matter mass, the
+scattering amplitude and the isospin angle in the ranges [], [],
+and [] respectively.
+
+You can extract the 1D marginal posteriors of each parameter or the 2D
+marginal posteriors of combination of parameters.
+"""
 XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments=comments)
