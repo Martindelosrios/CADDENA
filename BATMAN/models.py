@@ -1,11 +1,10 @@
 import h5py
-import pkg_resources
 import swyft
 import torch
 
 from BATMAN.batman import Model
+from importlib_resources import files
 
-DATA_PATH = pkg_resources.resource_filename("BATMAN", "dataset/")
 
 # Check if gpu is available
 if torch.cuda.is_available():
@@ -17,6 +16,8 @@ else:
 
 # Dataset for testing and loading previously trained models
 
+ref = files("BATMAN") / "dataset/"
+DATA_PATH = str(ref)
 with h5py.File(DATA_PATH + "testset.h5", "r") as data:
     x_norm_rate = data["rate_norm"][()]
     x_norm_drate = data["drate_norm"][()]
