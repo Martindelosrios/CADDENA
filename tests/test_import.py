@@ -1,6 +1,6 @@
 import h5py
 from importlib_resources import files
-#import swyft
+import swyft
 #import torch
 #from BATMAN.batman import Model
 
