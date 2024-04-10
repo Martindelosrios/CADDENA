@@ -1,8 +1,8 @@
 import h5py
-import swyft
-import torch
-from importlib_resources import files
-from BATMAN.batman import Model
+#import swyft
+#import torch
+#from importlib_resources import files
+#from BATMAN.batman import Model
 
 
 def importtestset():
