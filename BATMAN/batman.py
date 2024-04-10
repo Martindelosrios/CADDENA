@@ -79,7 +79,7 @@ def ratio_estimation(obs, prior, models):
 # data inside the plotting function
 ref = files("BATMAN") / "dataset/"
 DATA_PATH = str(ref)
-with h5py.File(DATA_PATH + "testset.h5", "r") as data:
+with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
     pars_min = data.attrs["pars_min"]
     pars_max = data.attrs["pars_max"]
     x_min_rate = data.attrs["x_min_rate"]
