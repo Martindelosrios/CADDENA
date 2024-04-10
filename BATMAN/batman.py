@@ -185,16 +185,16 @@ def ratio_estimation(obs, prior, models):
 
     prior_sample = swyft.Samples(z=prior)
 
-    logratios1D = []
-    logratios2D = []
+    logratios1d = []
+    logratios2d = []
     for imodel, model in enumerate(models):
         print(imodel)
         obs_sample = swyft.Sample(x=obs[imodel])
         output = model.trainer.infer(model.network, obs_sample, prior_sample)
-        logratios1D.append(np.asarray(output[0].logratios))
-        logratios2D.append(np.asarray(output[1].logratios))
+        logratios1d.append(np.asarray(output[0].logratios))
+        logratios2d.append(np.asarray(output[1].logratios))
 
-    return logratios1D, logratios2D
+    return logratios1d, logratios2d
 
 
 def plot1d(
@@ -203,8 +203,8 @@ def plot1d(
     pars_prior,
     pars_true,
     par=1,
-    xlabel="$\log_{10}(\sigma)$",
-    ylabel="$P(\sigma|x)\ /\ P(\sigma)$",
+    xlabel=r"$\log_{10}(\sigma)$",
+    ylabel=r"$P(\sigma|x)\ /\ P(\sigma)$",
     flip=False,
     fill=True,
     linestyle="solid",
@@ -212,7 +212,8 @@ def plot1d(
     fac=1,
 ):
     # Let's put the results in arrays
-    parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par]) + pars_min[par]
+    parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par])\
+              + pars_min[par]
     ratios = np.zeros_like(predictions[0][:, par])
     for pred in predictions:
         ratios = ratios + np.asarray(pred[:, par])
@@ -232,7 +233,8 @@ def plot1d(
 
     integrals = np.asarray(integrals)
 
-    # Let's compute the thresholds corresponding to 0.9 and 0.95 integrated prob
+    # Let's compute the thresholds corresponding to 0.9
+    #  and 0.95 integrated prob
     cut90 = cuts[np.argmin(np.abs(integrals - 0.9))]
     cut95 = cuts[np.argmin(np.abs(integrals - 0.95))]
 
@@ -395,7 +397,7 @@ def plot2d(
     )
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("$M_{DM}$ [GeV]")
-    ax.set_ylabel("$\sigma$ $[cm^{2}]$")
+    ax.set_xlabel(r"$M_{DM}$ [GeV]")
+    ax.set_ylabel(r"$\sigma$ $[cm^{2}]$")
 
     return ax

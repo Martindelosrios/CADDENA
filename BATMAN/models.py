@@ -1,8 +1,9 @@
 import h5py
-from BATMAN.batman import Model
 import pkg_resources
 import swyft
 import torch
+
+from BATMAN.batman import Model
 
 DATA_PATH = pkg_resources.resource_filename("BATMAN", "dataset/")
 
@@ -39,7 +40,7 @@ dm_test_s1s2 = swyft.SwyftDataModule(
 
 
 # Creating model for XENON nT with rate
-class Network_rate(swyft.SwyftModule):
+class NetworkRate(swyft.SwyftModule):
     def __init__(self):
         super().__init__()
         marginals = ((0, 1), (0, 2), (1, 2))
@@ -50,19 +51,20 @@ class Network_rate(swyft.SwyftModule):
             num_features=1, marginals=marginals, varnames="pars_norm"
         )
 
-    def forward(self, A, B):
-        logratios1 = self.logratios1(A["x"], B["z"])
-        logratios2 = self.logratios2(A["x"], B["z"])
+    def forward(self, a, b):
+        logratios1 = self.logratios1(a["x"], b["z"])
+        logratios2 = self.logratios2(a["x"], b["z"])
         return logratios1, logratios2
 
 
 trainer_rate = swyft.SwyftTrainer(
     accelerator=device, devices=1, max_epochs=2000, precision=64
 )
-network_rate = Network_rate()
+network_rate = NetworkRate()
 
 # ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
-trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "O1_rate.ckpt")
+trainer_rate.test(network_rate, dm_test_rate,
+                  ckpt_path=DATA_PATH + "O1_rate.ckpt")
 
 comments = """
 This model was trained with simulations of data expected in XENON nT with 
@@ -77,8 +79,9 @@ XENONnT_O1_rate = Model(network_rate, trainer_rate, comments=comments)
 # Creating drate
 
 
-# Now let's define a network that estimates all the 1D and 2D marginal posteriors
-class Network_drate(swyft.SwyftModule):
+# Now let's define a network that estimates all the 1D
+#  and 2D marginal posteriors
+class NetworkDrate(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
         super().__init__()
         self.optimizer_init = swyft.OptimizerInit(
@@ -107,19 +110,19 @@ class Network_drate(swyft.SwyftModule):
             num_features=5, marginals=marginals, varnames="pars_norm"
         )
 
-    def forward(self, A, B):
-        img = torch.tensor(A["x"])
+    def forward(self, a, b):
+        img = torch.tensor(a["x"])
         # z   = torch.tensor(B['z'])
         f = self.net(img)
-        logratios1 = self.logratios1(f, B["z"])
-        logratios2 = self.logratios2(f, B["z"])
+        logratios1 = self.logratios1(f, b["z"])
+        logratios2 = self.logratios2(f, b["z"])
         return logratios1, logratios2
 
 
 trainer_drate = swyft.SwyftTrainer(
     accelerator=device, devices=1, max_epochs=2000, precision=64
 )
-network_drate = Network_drate()
+network_drate = NetworkDrate()
 
 # ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_drate.yaml")
 trainer_drate.test(
@@ -133,8 +136,9 @@ XENONnT_O1_drate = Model(network_drate, trainer_drate, comments=comments)
 # S1S2
 
 
-# Now let's define a network that estimates all the 1D and 2D marginal posteriors
-class Network_s1s2(swyft.SwyftModule):
+# Now let's define a network that estimates all the 1D
+#   and 2D marginal posteriors
+class NetworkS1s2(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
         super().__init__()
         self.optimizer_init = swyft.OptimizerInit(
@@ -166,19 +170,19 @@ class Network_s1s2(swyft.SwyftModule):
             num_features=10, marginals=marginals, varnames="pars_norm"
         )
 
-    def forward(self, A, B):
-        img = torch.tensor(A["x"])
-        # z   = torch.tensor(B['z'])
+    def forward(self, a, b):
+        img = torch.tensor(a["x"])
+        # z   = torch.tensor(b['z'])
         f = self.net(img)
-        logratios1 = self.logratios1(f, B["z"])
-        logratios2 = self.logratios2(f, B["z"])
+        logratios1 = self.logratios1(f, b["z"])
+        logratios2 = self.logratios2(f, b["z"])
         return logratios1, logratios2
 
 
 trainer_s1s2 = swyft.SwyftTrainer(
     accelerator=device, devices=1, max_epochs=2500, precision=64
 )
-network_s1s2 = Network_s1s2()
+network_s1s2 = NetworkS1s2()
 
 # ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_s1s2.yaml")
 trainer_s1s2.test(
