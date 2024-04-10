@@ -212,8 +212,7 @@ def plot1d(
     fac=1,
 ):
     # Let's put the results in arrays
-    parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par])\
-              + pars_min[par]
+    parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par]) + pars_min[par]
     ratios = np.zeros_like(predictions[0][:, par])
     for pred in predictions:
         ratios = ratios + np.asarray(pred[:, par])

@@ -63,8 +63,7 @@ trainer_rate = swyft.SwyftTrainer(
 network_rate = NetworkRate()
 
 # ckpt_path = swyft.best_from_yaml(DATA_PATH + "O1_rate.yaml")
-trainer_rate.test(network_rate, dm_test_rate,
-                  ckpt_path=DATA_PATH + "O1_rate.ckpt")
+trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "O1_rate.ckpt")
 
 comments = """
 This model was trained with simulations of data expected in XENON nT with 

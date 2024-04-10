@@ -8,17 +8,18 @@ REQUIREMENTS = ["numpy", "matplotlib", "swyft==0.4.4", "h5py", "scipy"]
 setup(
     name="BATMAN",
     version="0.1",
-    description="BAyesian Toolkit for Machine learning ANalysis of direct detection experiments.",
+    description="BAyesian Toolkit for Machine learning \
+                 ANalysis of direct detection experiments.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     author="Martin de los Rios, Andres Perez & David Cerdeño",
     author_email=" martindelosrios13@gmail.com ",
     url=" https://github.com/martindelosrios/BATMAN",
-    py_modules=["ez_setup"],  # < - - - - - - - aca van los modulos
-    packages=["BATMAN", "BATMAN.dataset"],  # < - -- - - - - aca van los paquetes
-    #exclude_package_data={"": ["tests"]},
+    py_modules=["ez_setup"],
+    packages=["BATMAN", "BATMAN.dataset"],
+    #    exclude_package_data={"": ["tests"]},
     include_package_data=True,  # < - - - - - -- solo si hay datos
-    package_data={'BATMAN':['dataset/*']},
+    package_data={"BATMAN": ["dataset/*"]},
     license="The MIT License",
     install_requires=REQUIREMENTS,
     keywords=["BATMAN", "Dark matter"],
