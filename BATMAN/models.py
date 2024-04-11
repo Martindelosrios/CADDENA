@@ -17,7 +17,7 @@ else:
 
 ref = files("BATMAN") / "dataset/"
 DATA_PATH = str(ref)
-with h5py.File(DATA_PATH + "testset.h5", "r") as data:
+with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
     x_norm_rate = data["rate_norm"][()]
     x_norm_drate = data["drate_norm"][()]
     x_norm_s1s2 = data["s1s2_norm"][()]
