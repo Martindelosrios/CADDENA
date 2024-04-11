@@ -1,10 +1,9 @@
+import h5py
 import numpy as np
 import swyft
-import h5py
-
+from importlib_resources import files
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
-from importlib_resources import files
 
 
 class Model:
@@ -73,6 +72,7 @@ def ratio_estimation(obs, prior, models):
 
     return logratios1d, logratios2d
 
+
 # This data is needed only for the plots
 #  so should not be here!!!
 # I have to tidy a bit the code and put this
@@ -86,7 +86,6 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
     x_max_rate = data.attrs["x_max_rate"]
     x_min_drate = data.attrs["x_min_drate"]
     x_max_drate = data.attrs["x_max_drate"]
-
 
 
 def plot1d(

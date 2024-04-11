@@ -1,10 +1,9 @@
 import h5py
 import swyft
 import torch
-
-from BATMAN.batman import Model
 from importlib_resources import files
 
+from BATMAN.batman import Model
 
 # Check if gpu is available
 if torch.cuda.is_available():
@@ -66,7 +65,7 @@ network_rate = NetworkRate()
 trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "O1_rate.ckpt")
 
 comments = """
-This model was trained with simulations of the total rate expected in XENON nT with 
+This model was trained with simulations of the total rate expected in XENON nT with
 an eft O1 dark matter model, varying the dark matter mass, the
 scattering amplitude and the isospin angle in the ranges [], [],
 and [] respectively.
@@ -77,6 +76,7 @@ marginal posteriors of combination of parameters.
 XENONnT_O1_rate = Model(network_rate, trainer_rate, comments=comments)
 
 # Creating drate model
+
 
 class NetworkDrate(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
@@ -126,7 +126,7 @@ trainer_drate.test(
 )
 
 comments = """
-This model was trained with simulations of differential rate expected in XENON nT with 
+This model was trained with simulations of differential rate expected in XENON nT with
 an eft O1 dark matter model, varying the dark matter mass, the
 scattering amplitude and the isospin angle in the ranges [], [],
 and [] respectively.
@@ -137,6 +137,7 @@ marginal posteriors of combination of parameters.
 XENONnT_O1_drate = Model(network_drate, trainer_drate, comments=comments)
 
 # Let's create the S1S2 model
+
 
 class NetworkS1s2(swyft.SwyftModule):
     def __init__(self, lr=1e-3, gamma=1.0):
@@ -190,7 +191,7 @@ trainer_s1s2.test(
 )
 
 comments = """
-This model was trained with simulations of s1-s2 data expected in XENON nT with 
+This model was trained with simulations of s1-s2 data expected in XENON nT with
 an eft O1 dark matter model, varying the dark matter mass, the
 scattering amplitude and the isospin angle in the ranges [], [],
 and [] respectively.
