@@ -11,7 +11,16 @@ def importtestset():
     data_path = str(ref)
 
     with h5py.File(data_path + "/testset.h5", "r") as data:
+        x_norm_rate = data["x_norm_rate"][()]
+        x_norm_drate = data["x_norm_drate"][()]
+        x_norm_s1s2 = data["x_norm_s1s2"][()]
         pars_norm = data["pars_norm"][()]
+        pars_min = data.attrs["pars_min"]
+        pars_max = data.attrs["pars_max"]
+        x_min_rate = data.attrs["x_min_rate"]
+        x_max_rate = data.attrs["x_max_rate"]
+        x_min_drate = data.attrs["x_min_drate"]
+        x_max_drate = data.attrs["x_max_drate"]
 
     return pars_norm
 
