@@ -1,7 +1,7 @@
 # BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 <!-- README.md -->
 + [![cov](https://Martindelosrios.github.io/BATMAN/badges/coverage.svg)](https://github.com/Martindelosrios/BATMAN/actions)
-[![Coverage Status](https://codecov.io/gh-pages/martindelosrios/BATMAN/master/graph/badge.svg)](https://codecov.io/gh-pages/martindelosrios/BATMAN)
+[![Coverage Status](https://codecov.io/gh/martindelosrios/BATMAN/master/graph/badge.svg)](https://codecov.io/gh/martindelosrios/BATMAN)
 
 ![logo](LOGO.png)
 ## Installation
