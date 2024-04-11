@@ -1,7 +1,7 @@
 # BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 <!-- README.md -->
-![cov](.badges/.coverage.svg)
-![python](.badges/.python.svg)
+![cov](.badges/coverage.svg)
+![python](.badges/python.svg)
 
 ![logo](.badges/LOGO.png)
 ## Installation
