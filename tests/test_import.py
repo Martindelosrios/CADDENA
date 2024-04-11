@@ -1,9 +1,10 @@
 import h5py
-from importlib_resources import files
 import swyft
 import torch
+from importlib_resources import files
+
 from BATMAN.batman import Model
-#import BATMAN
+
 
 def importtestset():
     ref = files("BATMAN") / "dataset/"
@@ -19,7 +20,8 @@ def test_importtestset():
     pars_norm = importtestset()
     assert pars_norm[0, 0] == 0.3719487741506609
 
-def createModel():
+
+def createmodel():
     # Check if gpu is available
     if torch.cuda.is_available():
         device = "gpu"
@@ -27,7 +29,6 @@ def createModel():
     else:
         device = "cpu"
         print("Using CPU")
-
 
     class NetworkS1s2(swyft.SwyftModule):
         def __init__(self, lr=1e-3, gamma=1.0):
@@ -68,14 +69,13 @@ def createModel():
             logratios2 = self.logratios2(f, b["z"])
             return logratios1, logratios2
 
-
     trainer_s1s2 = swyft.SwyftTrainer(
         accelerator=device, devices=1, max_epochs=2500, precision=64
     )
     network_s1s2 = NetworkS1s2()
-    
+
     comments = """
-    This model was trained with simulations of s1-s2 data expected in XENON nT with 
+    This model was trained with simulations of s1-s2 data expected in XENON nT with
     an eft O1 dark matter model, varying the dark matter mass, the
     scattering amplitude and the isospin angle in the ranges [], [],
     and [] respectively.
@@ -83,12 +83,13 @@ def createModel():
     You can extract the 1D marginal posteriors of each parameter or the 2D
     marginal posteriors of combination of parameters.
     """
-    XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments=comments) 
+    XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments=comments)
     return XENONnT_O1_s1s2
 
-def test_createModel():
+
+def test_createmodel():
     comments = """
-    This model was trained with simulations of s1-s2 data expected in XENON nT with 
+    This model was trained with simulations of s1-s2 data expected in XENON nT with
     an eft O1 dark matter model, varying the dark matter mass, the
     scattering amplitude and the isospin angle in the ranges [], [],
     and [] respectively.
@@ -97,5 +98,5 @@ def test_createModel():
     marginal posteriors of combination of parameters.
     """
 
-    XENONnT_O1_s1s2 = createModel()
-    assert XENONnT_O1_s1s2.comments == comments 
+    XENONnT_O1_s1s2 = createmodel()
+    assert XENONnT_O1_s1s2.comments == comments
