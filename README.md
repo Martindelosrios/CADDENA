@@ -25,6 +25,9 @@ In [Examples](https://github.com/Martindelosrios/BATMAN/tree/master/EXAMPLES) yo
 ## Developed by:
 
 Martín de los Rios [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-2190-2196) 
-<a href="https://martindelosrios.netlify.app/">
+<a href="martindelosrios13@gmail.com">
 <img src=".badges/email.png" alt="" width="20" height="20">
+</a>
+<a href="https://martindelosrios.netlify.app/">
+<img src=".badges/website.jpeg" alt="" width="20" height="20">
 </a>
