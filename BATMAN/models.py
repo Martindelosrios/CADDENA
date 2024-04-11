@@ -62,7 +62,7 @@ trainer_rate = swyft.SwyftTrainer(
 )
 network_rate = NetworkRate()
 
-trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "O1_rate.ckpt")
+trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "/O1_rate.ckpt")
 
 comments = """
 This model was trained with simulations of the total rate expected in XENON nT with
@@ -122,7 +122,7 @@ network_drate = NetworkDrate()
 trainer_drate.test(
     network_drate,
     dm_test_drate,
-    ckpt_path=DATA_PATH + "O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
+    ckpt_path=DATA_PATH + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
 )
 
 comments = """
@@ -187,7 +187,7 @@ network_s1s2 = NetworkS1s2()
 trainer_s1s2.test(
     network_s1s2,
     dm_test_s1s2,
-    ckpt_path=DATA_PATH + "O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
+    ckpt_path=DATA_PATH + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
 )
 
 comments = """
