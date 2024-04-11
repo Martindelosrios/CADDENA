@@ -1,8 +1,9 @@
 # BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 <!-- README.md -->
-![cov](.coverage.svg)
+![cov](.badges/.coverage.svg)
+![python](.badges/.python.svg)
 
-![logo](LOGO.png)
+![logo](.badges/LOGO.png)
 ## Installation
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
