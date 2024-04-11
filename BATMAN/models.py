@@ -18,9 +18,9 @@ else:
 ref = files("BATMAN") / "dataset/"
 DATA_PATH = str(ref)
 with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
-    x_norm_rate = data["rate_norm"][()]
-    x_norm_drate = data["drate_norm"][()]
-    x_norm_s1s2 = data["s1s2_norm"][()]
+    x_norm_rate = data["x_norm_rate"][()]
+    x_norm_drate = data["x_norm_drate"][()]
+    x_norm_s1s2 = data["x_norm_s1s2"][()]
     pars_norm = data["pars_norm"][()]
 
 samples_test_rate = swyft.Samples(x=x_norm_rate, z=pars_norm)
