@@ -16,4 +16,4 @@ Soon you will be able to do
 
 ## Tutorial
 
-In [Examples](https://github.com/Martindelosrios/BATMAN/tree/dev/EXAMPLES) you can find some examples to start playing with BATMAN
+In [Examples](https://github.com/Martindelosrios/BATMAN/tree/master/EXAMPLES) you can find some examples to start playing with BATMAN
