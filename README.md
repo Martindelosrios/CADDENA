@@ -21,3 +21,7 @@ Soon you will be able to do
 ## Tutorial
 
 In [Examples](https://github.com/Martindelosrios/BATMAN/tree/master/EXAMPLES) you can find some examples to start playing with BATMAN
+
+## Developed by:
+
+Martín de los Rios [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-2190-2196)
