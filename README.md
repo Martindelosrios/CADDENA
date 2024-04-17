@@ -29,6 +29,6 @@ Martín de los Rios [![orcid](https://orcid.org/sites/default/files/images/orcid
 <img src=".badges/website.jpeg" alt="" width="20" height="20">
 </a> (martindelosrios13@gmail.com)
 
-Andrés Daniel Perez [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-2190-2196)
+Andrés Daniel Perez [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-9391-6047)
 
-David Cerdeño [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-2190-2196)
+David Cerdeño [![orcid](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-7649-1956)
