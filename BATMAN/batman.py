@@ -89,10 +89,10 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
 
 
 def plot1d(
-    ax,
     predictions,
     pars_prior,
     pars_true,
+    ax = None,
     par=1,
     xlabel=r"$\log_{10}(\sigma)$",
     ylabel=r"$P(\sigma|x)\ /\ P(\sigma)$",
@@ -102,6 +102,8 @@ def plot1d(
     color="black",
     fac=1,
 ):
+    
+    if ax is None: fig, ax = plt.subplots(1,1)
     # Let's put the results in arrays
     parameter = pars_prior[:, par] * (pars_max[par] - pars_min[par]) + pars_min[par]
     ratios = np.zeros_like(predictions[0][:, par])
@@ -187,16 +189,17 @@ def plot1d(
 
 
 def plot2d(
-    ax,
     predictions,
     pars_prior,
     pars_true,
+    ax = None,
     fill=True,
     line=False,
     linestyle="solid",
     color="black",
 ):
 
+    if ax is None: fig, ax = plt.subplots(1,1)
     # results_pars = np.asarray(predictions[0][1].params)
     results_pars = pars_prior  # * (pars_max - pars_min) + pars_min
 
