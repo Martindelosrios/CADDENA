@@ -4,6 +4,7 @@ import swyft
 from importlib_resources import files
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
+import matplotlib.pyplot as plt
 
 
 class Model:
