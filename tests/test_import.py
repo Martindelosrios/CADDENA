@@ -22,12 +22,21 @@ def importtestset():
         x_min_drate = data.attrs["x_min_drate"]
         x_max_drate = data.attrs["x_max_drate"]
 
-    return pars_norm
+    return x_norm_rate, x_norm_drate, x_norm_s1s2, pars_norm, pars_min, pars_max, x_min_rate, x_max_rate, x_min_drate, x_max_drate
 
 
 def test_importtestset():
-    pars_norm = importtestset()
+    x_norm_rate, x_norm_drate, x_norm_s1s2, pars_norm, pars_min, pars_max, x_min_rate, x_max_rate, x_min_drate, x_max_drate = importtestset()
+    assert x_norm_rate[0,0] == 0.24924694017490479
+    assert x_norm_drate[0, 0] == 0.0142018779342723
+    assert x_norm_s1s2[0,0,21,47] == 6
     assert pars_norm[0, 0] == 0.3719487741506609
+    assert pars_min[0] == 0.77828586
+    assert pars_max[0] == 2.99964286
+    assert x_min_rate == 3.423245873936808
+    assert x_max_rate == 5.563303059369412
+    assert x_min_drate[0] == 5.0 
+    assert x_max_drate[0] == 34085.0
 
 
 def createmodel():
