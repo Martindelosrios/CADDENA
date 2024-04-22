@@ -31,9 +31,9 @@ def doplots():
     
     pars_prior = np.random.uniform(low = 0, high = 1, size = (1_000, 3))
 
-    models.XENONnT_O1_rate.train_model()
-    models.XENONnT_O1_drate.train_model()
-    models.XENONnT_O1_s1s2.train_model()
+    models.XENONnT_O1_rate.load_weights()
+    models.XENONnT_O1_drate.load_weights()
+    models.XENONnT_O1_s1s2.load_weights()
 
     logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
 

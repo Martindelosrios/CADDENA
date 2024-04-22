@@ -54,7 +54,7 @@ class Model:
             output = output + "\n READY TO USE :) \n"
         return output
 
-    def train_model(self, path_to_weights=None, test_data=None):
+    def load_weights(self, path_to_weights=None, test_data=None):
         print("Training model...")
         if path_to_weights is None:
             path_to_weights = self.path_to_weights
