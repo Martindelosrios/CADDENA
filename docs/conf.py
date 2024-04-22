@@ -19,7 +19,7 @@
 
 project = 'BATMAN'
 copyright = '2024'
-author = 'MArtín de los Rios'
+author = 'Martín de los Rios'
 
 # The short X.Y version
 version = '0.1'
@@ -33,10 +33,6 @@ release = '0.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinxcontrib.jupyter',
-    'sphinxcontrib.bibtex',
-]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']
@@ -71,98 +67,3 @@ html_static_path = ['static']
 
 # -- Extension configuration -------------------------------------------------
 
-# -- jupyter build configuration ---------------------------------------------------
-jupyter_kernels = {
-    'python3': {
-        'kernelspec': {
-            'display_name': 'Python',
-            'language': 'python3',
-            'name': 'python3'
-        },
-        'file_extension': '.py'
-    },
-    'python2': {
-        'kernelspec': {
-            'display_name': 'Python',
-            'language': 'python2',
-            'name': 'python2'
-        },
-        'file_extension': '.py'
-    },
-    'julia-1.1': {
-        'kernelspec': {
-            'display_name': 'Julia 1.1',
-            'language': 'julia',
-            'name': 'julia-1.1'
-        },
-        'file_extension': '.jl'
-    }
-}
-
-# --------------------------------------------
-# jupyter Sphinx Extension conversion settings
-# --------------------------------------------
-
-# Conversion Mode Settings
-# If "all", convert codes and texts into notebook
-# If "code", convert codes only
-jupyter_conversion_mode = "all"
-
-jupyter_write_metadata = False
-
-# Location for _static folder
-jupyter_static_file_path = ["source/_static"]
-
-# Configure jupyter headers
-jupyter_headers = {
-    "python3": [
-        # nbformat.v4.new_code_cell("%autosave 0")      #@mmcky please make this an option
-        ],
-    "julia": [
-        ],
-}
-
-# Filename for the file containing the welcome block
-jupyter_welcome_block = ""
-
-#Adjust links to target html (rather than ipynb)
-jupyter_target_html = False
-
-#path to download notebooks from
-jupyter_download_nb_urlpath = None
-
-#allow downloading of notebooks
-jupyter_download_nb = False
-
-#Use urlprefix images
-jupyter_download_nb_image_urlpath = None
-
-#Allow ipython as a language synonym for blocks to be ipython highlighted
-jupyter_lang_synonyms = ["ipython"]
-
-#Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
-jupyter_ignore_skip_test = True
-
-#allow execution of notebooks
-jupyter_execute_notebooks = False
-
-# Location of template folder for coverage reports
-jupyter_template_coverage_file_path = False
-
-# generate html from IPYNB files
-jupyter_generate_html = False
-
-# html template specific to your website needs
-jupyter_html_template = ""
-
-# latex template specific to your website needs
-jupyter_latex_template = ""
-
-#make website
-jupyter_make_site = False
-
-#force markdown image inclusion
-jupyter_images_markdown = True
-
-#This is set true by default to pass html to the notebooks
-jupyter_allow_html_only=True
