@@ -1,1 +1,1 @@
-autofunction:: batman.Model
+.. autofunction:: batman.Model
