@@ -3,7 +3,7 @@
 ![cov](.badges/coverage.svg)
 [![python](.badges/python.svg)](https://www.python.org/downloads/release/python-380/)
 
-![logo](.badges/LOGO.png)
+![logo](https://github.com/Martindelosrios/BATMAN/blob/master/.badges/LOGO.png)
 ## Installation
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
