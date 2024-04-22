@@ -62,7 +62,7 @@ trainer_rate = swyft.SwyftTrainer(
 )
 network_rate = NetworkRate()
 
-trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "/O1_rate.ckpt")
+# trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "/O1_rate.ckpt")
 
 comments = """
 This model was trained with simulations of the total rate expected in XENON nT with
@@ -73,7 +73,13 @@ and [] respectively.
 You can extract the 1D marginal posteriors of each parameter or the 2D
 marginal posteriors of combination of parameters.
 """
-XENONnT_O1_rate = Model(network_rate, trainer_rate, comments=comments)
+XENONnT_O1_rate = Model(
+    network_rate,
+    trainer_rate,
+    path_to_weights=DATA_PATH + "/O1_rate.ckpt",
+    comments=comments,
+    test_data=dm_test_rate,
+)
 
 # Creating drate model
 
@@ -119,11 +125,11 @@ trainer_drate = swyft.SwyftTrainer(
 )
 network_drate = NetworkDrate()
 
-trainer_drate.test(
-    network_drate,
-    dm_test_drate,
-    ckpt_path=DATA_PATH + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
-)
+# trainer_drate.test(
+#    network_drate,
+#    dm_test_drate,
+#    ckpt_path=DATA_PATH + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
+# )
 
 comments = """
 This model was trained with simulations of differential rate expected in XENON nT with
@@ -134,7 +140,14 @@ and [] respectively.
 You can extract the 1D marginal posteriors of each parameter or the 2D
 marginal posteriors of combination of parameters.
 """
-XENONnT_O1_drate = Model(network_drate, trainer_drate, comments=comments)
+XENONnT_O1_drate = Model(
+    network_drate,
+    trainer_drate,
+    path_to_weights=DATA_PATH
+    + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
+    comments=comments,
+    test_data=dm_test_drate,
+)
 
 # Let's create the S1S2 model
 
@@ -184,11 +197,11 @@ trainer_s1s2 = swyft.SwyftTrainer(
 )
 network_s1s2 = NetworkS1s2()
 
-trainer_s1s2.test(
-    network_s1s2,
-    dm_test_s1s2,
-    ckpt_path=DATA_PATH + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
-)
+# trainer_s1s2.test(
+#    network_s1s2,
+#    dm_test_s1s2,
+#    ckpt_path=DATA_PATH + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
+# )
 
 comments = """
 This model was trained with simulations of s1-s2 data expected in XENON nT with
@@ -199,4 +212,11 @@ and [] respectively.
 You can extract the 1D marginal posteriors of each parameter or the 2D
 marginal posteriors of combination of parameters.
 """
-XENONnT_O1_s1s2 = Model(network_s1s2, trainer_s1s2, comments=comments)
+XENONnT_O1_s1s2 = Model(
+    network_s1s2,
+    trainer_s1s2,
+    path_to_weights=DATA_PATH
+    + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
+    comments=comments,
+    test_data=dm_test_s1s2,
+)

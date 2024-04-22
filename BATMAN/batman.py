@@ -1,3 +1,5 @@
+import warnings
+
 import h5py
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,18 +22,51 @@ class Model:
     trainer: swyft.trainer object that contains the trainer
              of the trained network.
 
+    path_to_weigths: Path to pre-trained weights.
+
+    trained_flag: Boolean that marks if the model is already trained.
+
     comments: str. with all the information of the trained network.
 
     """
 
-    def __init__(self, network, trainer, comments="No added comments"):
+    def __init__(
+        self,
+        network,
+        trainer,
+        path_to_weights=None,
+        trained_flag=False,
+        comments="No added comments",
+        test_data=None,
+    ):
         self.network = network
         self.trainer = trainer
+        self.path_to_weights = path_to_weights
+        self.trained_flag = trained_flag
+        self.test_data = test_data
         self.comments = comments
 
     def __repr__(self):
         output = self.comments
+        if self.trained_flag is False:
+            output = output + "\n NOT TRAINED \n"
+        else:
+            output = output + "\n READY TO USE :) \n"
         return output
+
+    def train_model(self, path_to_weights=None, test_data=None):
+        print("Training model...")
+        if path_to_weights is None:
+            path_to_weights = self.path_to_weights
+        print("Reading weights from \n")
+        print(path_to_weights)
+        if test_data is None:
+            test_data = self.test_data
+
+        self.trainer.test(self.network, test_data, ckpt_path=path_to_weights)
+        self.trained_flag = True
+        self.path_to_weights = path_to_weights
+        return None
 
 
 def ratio_estimation(obs, prior, models):
@@ -58,7 +93,13 @@ def ratio_estimation(obs, prior, models):
     the observation for all the listed models.
     """
     if len(obs) != len(models):
-        "The number of observations does not match the number of models"
+        raise ValueError(
+            "The number of observations does not match the number of models"
+        )
+
+    for i in models:
+        if not i.trained_flag:
+            warnings.warn("You are using a model that is not trained yet.")
 
     prior_sample = swyft.Samples(z=prior)
 

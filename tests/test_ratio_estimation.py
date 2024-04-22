@@ -29,6 +29,10 @@ def estimate_ratios():
     x_obs_s1s2  = x_norm_s1s2[i,:].reshape(1,96,96)
     
     pars_prior = np.random.uniform(low = 0, high = 1, size = (1_000, 3))
+    
+    models.XENONnT_O1_rate.train_model()
+    models.XENONnT_O1_drate.train_model()
+    models.XENONnT_O1_s1s2.train_model()
 
     logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
 
