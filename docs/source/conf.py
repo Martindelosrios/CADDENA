@@ -23,6 +23,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'myst_parser',
     'sphinx.ext.imgconverter',
+    'sphinx.ext.autosummary',
     # Add more extensions as needed
 ]
 

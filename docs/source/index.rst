@@ -4,6 +4,8 @@
 
    This project is under active development.
 
+:func:`BATMAN.batman.Model`
+
 Contents
 --------
 
@@ -13,3 +15,6 @@ Contents
 
 .. toctree::
     Getting started <usage>
+
+.. toctree::
+    Api <api>

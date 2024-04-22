@@ -55,6 +55,9 @@ class Model:
         return output
 
     def load_weights(self, path_to_weights=None, test_data=None):
+        '''
+        trial
+        '''
         print("Training model...")
         if path_to_weights is None:
             path_to_weights = self.path_to_weights
