@@ -8,7 +8,7 @@
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
 
-`git clone git@github.com:Martindelosrios/BATMAN.git`
+`git clone https://github.com/Martindelosrios/BATMAN.git`
 
 Then, in the BATMAN directory just do
 
