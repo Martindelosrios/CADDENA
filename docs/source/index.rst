@@ -12,4 +12,4 @@ Contents
    Home <self>
 
 .. toctree::
-    Usage <usage>
+    Getting started <usage>

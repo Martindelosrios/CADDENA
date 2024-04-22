@@ -6,29 +6,34 @@ Usage
 Installation
 ------------
 
-To use BATMAN, first install it using pip:
+To use BATMAN, first install it from github using pip:
 
 .. code-block:: console
+   (.venv) $ git clone https://github.com/Martindelosrios/BATMAN.git
 
-   (.venv) $ pip install batman
 
-Creating recipes
-----------------
+Loading pre-trained models
+--------------------------
 
-To retrieve a list of random ingredients,
-you can use the ``batman.Model()`` function:
+To pre-trained models are saved in ``batman.models`` module that
+can be loaded doing:
+
+.. code-block:: python
+    from BATMAN import batman, models
+
+In order to load the weights obtained in the training published on
+arxiv XXXX.XXXX you have to do:
+
+.. code-block:: python
+    models.XENONnT_O1_rate.load_weights()
 
 .. autofunction:: BATMAN.batman.Model
 
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
+Once the model trained (or equivantely the pre-trained weights loaded)
+you can compute the likelihood-to-evidence ratios doing:
 
-.. autoexception:: lumache.InvalidKindError
-
-For example:
-
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
+.. code-block:: python
+    batman.ratio_estimation([x_obs_rate], pars_prior, [models.XENONnT_O1_rate])
+    
+ where ``pars_prior`` is a np.array with parameters sampled from a choosen prior.
 
