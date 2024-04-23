@@ -2,6 +2,7 @@ API
 ===
 
 .. automodule:: BATMAN.batman
+    :imported-members:
     :members:
     :undoc-members:
     :show-inheritance:

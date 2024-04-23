@@ -15,5 +15,3 @@ Contents
 .. toctree::
     Getting started <usage>
 
-.. toctree::
-    Api <api>

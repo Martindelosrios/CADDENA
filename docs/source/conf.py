@@ -5,7 +5,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-sys.path.insert(0, os.path.abspath('/home/martin/martin/trabajos/BATMAN'))
+sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
@@ -25,11 +25,14 @@ release = '1.0.0'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'autoapi.extension',
     'myst_parser',
     'sphinx.ext.imgconverter',
     'sphinx.ext.autosummary',
     # Add more extensions as needed
 ]
+
+autoapi_dirs = ['../../BATMAN']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
