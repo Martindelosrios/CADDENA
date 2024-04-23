@@ -4,7 +4,7 @@
 [![python](.badges/python.svg)](https://www.python.org/downloads/release/python-380/)
 [![Documentation Status](https://readthedocs.org/projects/batman-rtd/badge/?version=latest)](https://batman-rtd.readthedocs.io/en/latest/?badge=latest)
 
-![logo](https://github.com/Martindelosrios/BATMAN/tree/master/.badges/LOGO.png)
+![logo](https://github.com/Martindelosrios/BATMAN/blob/master/.badges/LOGO.png)
 ## Installation
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
