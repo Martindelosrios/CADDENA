@@ -33,7 +33,8 @@ extensions = [
 ]
 
 autoapi_dirs = ['../../BATMAN']
-
+autoapi_file_patterns = ['*.py']
+autoapi_ignore = ['dataset/']
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
