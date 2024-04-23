@@ -1,7 +1,11 @@
+# Run this with:
+#   sphinx-build -M html . _build
+# ------------------------------------------
+
 # -*- coding: utf-8 -*-
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('/home/martin/martin/trabajos/BATMAN'))
 
 # -- Project information -----------------------------------------------------
 

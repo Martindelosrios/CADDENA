@@ -1,7 +1,13 @@
 API
 ===
 
-.. autosummary::
-   :toctree: generated
+.. automodule:: BATMAN.batman
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
-   batman
+
+.. automodule:: BATMAN.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
