@@ -37,8 +37,8 @@ def doplots():
 
     logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
 
-    ax1 = batman.plot1d([logratios1D[0]], pars_prior, pars_true, par = 0)
-    ax2 = batman.plot2d(logratios2D, pars_prior, pars_true, fill = True, line = True, linestyle = 'solid', color = 'black')
+    ax1 = batman.plot1d([logratios1D[0]], pars_prior, pars_true, par = 0, pars_min = pars_min, pars_max = pars_max)
+    ax2 = batman.plot2d(logratios2D, pars_prior, pars_true, fill = True, line = True, linestyle = 'solid', color = 'black', pars_min = pars_min, pars_max = pars_max)
     
     return ax1, ax2
 

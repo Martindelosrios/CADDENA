@@ -16,10 +16,10 @@ class Model:
     Parameters
     ----------
 
-    network: swyft.network object that contains the network
+    network: SwyftModule object that contains the network
              that would be saved.
 
-    trainer: swyft.trainer object that contains the trainer
+    trainer: SwyftTrainer object that contains the trainer
              of the trained network.
 
     path_to_weigths: Path to pre-trained weights.
@@ -28,6 +28,7 @@ class Model:
 
     comments: str. with all the information of the trained network.
 
+    test_data: swyft.lightning.data.SwyftDataModule object with the data that will be used for testing the model.
     """
 
     def __init__(
@@ -55,9 +56,16 @@ class Model:
         return output
 
     def load_weights(self, path_to_weights=None, test_data=None):
-        '''
-        trial
-        '''
+        """
+        Method for loading pre-saved weights.
+
+        Parameters
+        ----------
+
+        path_to_weights: Path to the pre-saved weights.
+
+        test_data: swyft.lightning.data.SwyftDataModule object with the data that will be used to test the model.
+        """
         print("Training model...")
         if path_to_weights is None:
             path_to_weights = self.path_to_weights
@@ -72,7 +80,7 @@ class Model:
         return None
 
 
-def ratio_estimation(obs, prior, models):
+def ratio_estimation(obs: list, prior: np.array, models: list) -> list:
     """
     Function that computes the likelihood-to-evidence ratio
     for the given observation, using the all the
@@ -118,20 +126,6 @@ def ratio_estimation(obs, prior, models):
     return logratios1d, logratios2d
 
 
-# This data is needed only for the plots
-#  so should not be here!!!
-# I have to tidy a bit the code and put this
-# data inside the plotting function
-ref = files("BATMAN") / "dataset/"
-DATA_PATH = str(ref)
-with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
-    pars_min = data.attrs["pars_min"]
-    pars_max = data.attrs["pars_max"]
-    x_min_rate = data.attrs["x_min_rate"]
-    x_max_rate = data.attrs["x_max_rate"]
-    x_min_drate = data.attrs["x_min_drate"]
-    x_max_drate = data.attrs["x_max_drate"]
-
 
 def plot1d(
     predictions,
@@ -146,7 +140,52 @@ def plot1d(
     linestyle="solid",
     color="black",
     fac=1,
+    pars_min = np.array([1.,1.,1.]),
+    pars_max = np.array([1.,1.,1.])
 ):
+    """
+    Function to plot the 1D marginal posterior of a given parameter.
+
+    Parameters
+    ----------
+
+    predictions: list of predictions made with batman.ratio_estimation()
+
+    pars_prior: np.array with parameters sampled from a chosen prior.
+
+    pars_true: np.array with the real parameter of the model.
+
+    ax: matplotlib axis where the plot will be saved.
+        If None, an axis will be created and returned. Default = None
+
+    par: Integer for indicating the parameters that will be plotted.
+         Default = 1.
+
+    xlabel: Str. with the xlabel of the plot.
+
+    ylabel: Str. with the ylabel of the plot.
+
+    flip: Bool indicating if the axis will be flipped or not. Default = False
+
+    fill: Bool indicating if the contours should be filled or not. Default = True
+
+    linestyle: Linestyle for the contours. Default = 'solid'
+
+    color: Color for the contours. Defatul = 'black'
+
+    fac: Factor for improving the distribution visualization. Default = 1.
+
+    pars_min: np.array with the minimum values of the analised parameters.
+    Needed for re-normalizing to physical values. Default = [1,1,1]
+
+    pars_max: np.array with the maximum values of the analised parameters.
+    Needed for re-normalizing to physical values. Default = [1,1,1]
+
+    Returns
+    -------
+
+    matplotlib axis containing the plot.
+    """
 
     if ax is None:
         fig, ax = plt.subplots(1, 1)
@@ -243,7 +282,43 @@ def plot2d(
     line=False,
     linestyle="solid",
     color="black",
+    pars_min = np.array([1.,1.,1.]),
+    pars_max = np.array([1.,1.,1.])
 ):
+    """
+    Function to plot the 2D marginal posterior of the first and second parameters.
+
+    Parameters
+    ----------
+
+    predictions: list of predictions made with batman.ratio_estimation()
+
+    pars_prior: np.array with parameters sampled from a chosen prior.
+
+    pars_true: np.array with the real parameter of the model.
+
+    ax: matplotlib axis where the plot will be saved.
+        If None, an axis will be created and returned. Default = None
+
+    fill: Bool indicating if the contours should be filled or not. Default = True
+
+    line: bool indicating if a line should be plotted for each contour. Default = False
+
+    linestyle: Linestyle for the contours. Default = 'solid'
+
+    color: Color for the contours. Defatul = 'black'
+
+    pars_min: np.array with the minimum values of the analised parameters.
+    Needed for re-normalizing to physical values. Default = [1,1,1]
+
+    pars_max: np.array with the maximum values of the analised parameters.
+    Needed for re-normalizing to physical values. Default = [1,1,1]
+
+    Returns
+    -------
+
+    matplotlib axis containing the plot.
+    """
 
     if ax is None:
         fig, ax = plt.subplots(1, 1)
