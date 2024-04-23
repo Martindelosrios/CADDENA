@@ -2,6 +2,7 @@
 <!-- README.md -->
 ![cov](.badges/coverage.svg)
 [![python](.badges/python.svg)](https://www.python.org/downloads/release/python-380/)
+[![Documentation Status](https://readthedocs.org/projects/batman-rtd/badge/?version=latest)](https://batman-rtd.readthedocs.io/en/latest/?badge=latest)
 
 ![logo](https://github.com/Martindelosrios/BATMAN/blob/master/.badges/LOGO.png)
 ## Installation
