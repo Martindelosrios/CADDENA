@@ -6,38 +6,47 @@ Usage
 Installation
 ------------
 
-To use BATMAN, first install it from github using pip:
+To use BATMAN, we first need to install it from github using pip:
 
 .. code-block:: console
 
-   (.venv) $ git clone https://github.com/Martindelosrios/BATMAN.git
-
+   $ git clone https://github.com/Martindelosrios/BATMAN.git
+   $ cd BATMAN
+   (.venv) $ pip install .
 
 Loading pre-trained models
 --------------------------
 
-To pre-trained models are saved in ``batman.models`` module that
-can be loaded doing:
+Some pre-trained models are saved in ``batman.models`` 
+(you can check the list of available models in :ref:`Models`).
+These models can be loaded doing:
 
 .. code-block:: python
 
     from BATMAN import batman, models
 
-In order to load the weights obtained in the training published on
-arxiv XXXX.XXXX you have to use .
+Before using them you have to load the weights obtained in the
+training published on arxiv XXXX.XXXX. For a given model you can do:
 
 .. code-block:: python
 
-    models.XENONnT_O1_rate.load_weights()
+    model.load_weights()
 
 
-Once the model trained (or equivantely the pre-trained weights loaded)
+Once the model is trained (or equivantely the pre-trained weights loaded)
 you can compute the likelihood-to-evidence ratios doing:
 
 .. code-block:: python
 
-    batman.ratio_estimation([x_obs_rate], pars_prior, [models.XENONnT_O1_rate])
+    batman.ratio_estimation([x], pars_prior, [model])
     
 
-where ``pars_prior`` is a np.array with parameters sampled from a choosen prior.
+where ``x`` is the observtion to be analysed (that must have the shape for which the model was trained)
+and ``pars_prior`` is a np.array with parameters sampled from a choosen prior.
 
+You can also estimate the ratios for a list of observations and models at the same time!!
+
+
+.. code-block:: python
+
+    batman.ratio_estimation([x1, x2, ...], pars_prior, [model1, model2, ...])

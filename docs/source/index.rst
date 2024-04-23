@@ -13,7 +13,17 @@ BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
     :target: https://batman-rtd.readthedocs.io/en/latest/?badge=latest
 
 
-We are here!
+Welcome to BATMAN! 
+
+This is a code for analysing dark matter direct detection experiment
+with Bayesian statistic using Machine Learning tools.
+
+This code is presented in arxiv XXXX.XXXX and is build on top of `SWYFT <https://github.com/undark-lab/swyft>`_.
+
+The main goal of BATMAN is to estimate the full posterior distribution
+of some interesting parameter given new data :math:`P(\Theta|X)`!
+
+This is done using the `TMNRE <https://arxiv.org/abs/2111.08030>`_ (Truncated Marginal Neural Ratio Estimation) method.
 
 .. note::
 
@@ -30,3 +40,5 @@ Contents
 .. toctree::
     Getting started <usage>
 
+.. toctree::
+    Available models <models>
