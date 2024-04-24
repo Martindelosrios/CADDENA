@@ -62,16 +62,16 @@ trainer_rate = swyft.SwyftTrainer(
 )
 network_rate = NetworkRate()
 
-# trainer_rate.test(network_rate, dm_test_rate, ckpt_path=DATA_PATH + "/O1_rate.ckpt")
+comments = r"""
+    This model was trained using synthetic data of the expected total
+    rate in xenonNT for dark matter particles with O(1)
+    with :math:`M_{dm} \in [6-1000] GeV`, :math:`\sigma = [10^{-50}-10^{-43}] cm^{2}`
+    and :math:`\theta = [-\pi/2-\pi/2]`.
+    In order to analyse a new data x it must be a np.array with shape (n,1),
+    where n is the number of observations to be analysed.
 
-comments = """
-This model was trained with simulations of the total rate expected in XENON nT with
-an eft O1 dark matter model, varying the dark matter mass, the
-scattering amplitude and the isospin angle in the ranges [], [],
-and [] respectively.
-
-You can extract the 1D marginal posteriors of each parameter or the 2D
-marginal posteriors of combination of parameters.
+    You can extract the 1D marginal posteriors of each parameter or the 2D
+    marginal posteriors of combination of parameters.
 """
 XENONnT_O1_rate = Model(
     network_rate,
@@ -125,20 +125,16 @@ trainer_drate = swyft.SwyftTrainer(
 )
 network_drate = NetworkDrate()
 
-# trainer_drate.test(
-#    network_drate,
-#    dm_test_drate,
-#    ckpt_path=DATA_PATH + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
-# )
-
 comments = """
-This model was trained with simulations of differential rate expected in XENON nT with
-an eft O1 dark matter model, varying the dark matter mass, the
-scattering amplitude and the isospin angle in the ranges [], [],
-and [] respectively.
+    This model was trained using synthetic data of the expected differential
+    rate in xenonNT for dark matter particles with O(1)
+    with :math:`M_{dm} in [6-1000] GeV`, :math:`sigma = [10^{-50}-10^{-43}] cm^{2}`
+    and :math:`theta = [-pi/2-pi/2]`.
+    In order to analyse a new data x it must be a np.array with shape (n,59),
+    where n is the number of observations to be analysed.
 
-You can extract the 1D marginal posteriors of each parameter or the 2D
-marginal posteriors of combination of parameters.
+    You can extract the 1D marginal posteriors of each parameter or the 2D
+    marginal posteriors of combination of parameters.
 """
 XENONnT_O1_drate = Model(
     network_drate,
@@ -197,20 +193,16 @@ trainer_s1s2 = swyft.SwyftTrainer(
 )
 network_s1s2 = NetworkS1s2()
 
-# trainer_s1s2.test(
-#    network_s1s2,
-#    dm_test_s1s2,
-#    ckpt_path=DATA_PATH + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
-# )
-
 comments = """
-This model was trained with simulations of s1-s2 data expected in XENON nT with
-an eft O1 dark matter model, varying the dark matter mass, the
-scattering amplitude and the isospin angle in the ranges [], [],
-and [] respectively.
+    This model was trained using synthetic data of the expected S1S2
+    signal in xenonNT for dark matter particles with O(1)
+    with :math:`M_{dm} in [6-1000] GeV`, :math:`sigma = [10^{-50}-10^{-43}] cm^{2}`
+    and :math:`\theta = [-pi/2-pi/2]`.
+    In order to analyse a new data x it must be a np.array with shape (n,1,97,70),
+    where n is the number of observations to be analysed.
 
-You can extract the 1D marginal posteriors of each parameter or the 2D
-marginal posteriors of combination of parameters.
+    You can extract the 1D marginal posteriors of each parameter or the 2D
+    marginal posteriors of combination of parameters.
 """
 XENONnT_O1_s1s2 = Model(
     network_s1s2,

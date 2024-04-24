@@ -9,7 +9,7 @@ Available Models
    rate in xenonNT for dark matter particles with :math:`\mathcal{O}_{1}`
    with :math:`M_{dm} \in [6-1000] GeV`, :math:`\sigma \in [10^{-50}-10^{-43}] cm^{2}` 
    and :math:`\theta \in [-\pi/2-\pi/2]`.
-   In order to analyse a new data :math:`x` it must be a np.array with shape (1). CHECK THIS
+   In order to analyse a new data :math:`x` it must be a np.array with shape (n,1), where n is the number of observations to be analysed. CHECK THIS
 
 #. XENONnT_O1_drate: 
 

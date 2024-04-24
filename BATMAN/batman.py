@@ -1,10 +1,8 @@
 import warnings
 
-import h5py
 import matplotlib.pyplot as plt
 import numpy as np
 import swyft
-from importlib_resources import files
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
 
@@ -126,7 +124,6 @@ def ratio_estimation(obs: list, prior: np.array, models: list) -> list:
     return logratios1d, logratios2d
 
 
-
 def plot1d(
     predictions,
     pars_prior,
@@ -140,8 +137,8 @@ def plot1d(
     linestyle="solid",
     color="black",
     fac=1,
-    pars_min = np.array([1.,1.,1.]),
-    pars_max = np.array([1.,1.,1.])
+    pars_min=np.array([1.0, 1.0, 1.0]),
+    pars_max=np.array([1.0, 1.0, 1.0]),
 ):
     """
     Function to plot the 1D marginal posterior of a given parameter.
@@ -282,8 +279,8 @@ def plot2d(
     line=False,
     linestyle="solid",
     color="black",
-    pars_min = np.array([1.,1.,1.]),
-    pars_max = np.array([1.,1.,1.])
+    pars_min=np.array([1.0, 1.0, 1.0]),
+    pars_max=np.array([1.0, 1.0, 1.0]),
 ):
     """
     Function to plot the 2D marginal posterior of the first and second parameters.
