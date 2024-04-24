@@ -1,6 +1,3 @@
-.. .. include:: ../../README.md
-    :parser: myst_parser.sphinx_
-
 BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 ----------------------------------------------------------------
 
