@@ -31,7 +31,6 @@ Contents
 --------
 
 .. toctree::
-
    Home <self>
 
 .. toctree::
@@ -39,3 +38,6 @@ Contents
 
 .. toctree::
     Available models <models>
+
+.. toctree::
+    Examples <examples>
