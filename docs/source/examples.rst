@@ -98,7 +98,7 @@ And finally we can compute the likelihood-to-evidence ratios
     
 
 #. The first argument is a list with the observation that will be analyzed.
-#. The second argument is the sample of paramters that will be paired with the observations.
+#. The second argument is the sample of parameters that will be paired with the observations.
 #. The third argument is a list with the models that will be used.
 
 :red:`The first element of the observation list will be analyzed with the first element of the model list, 
