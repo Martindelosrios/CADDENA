@@ -3,11 +3,11 @@ import swyft
 import torch
 from importlib_resources import files
 
-from BATMAN.batman import Model
+from CADDENA.caddena import Model
 
 
 def importtestset():
-    ref = files("BATMAN") / "dataset/"
+    ref = files("CADDENA") / "dataset/"
     data_path = str(ref)
 
     with h5py.File(data_path + "/testset.h5", "r") as data:

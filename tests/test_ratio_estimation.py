@@ -1,11 +1,11 @@
-from BATMAN import batman, models
+from CADDENA import caddena, models
 import numpy as np
 import h5py
 from importlib_resources import files
 
 
 def estimate_ratios():
-    ref = files("BATMAN") / "dataset/"
+    ref = files("CADDENA") / "dataset/"
     DATA_PATH = str(ref)
     with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
       x_norm_rate  = data['x_norm_rate'][()]
@@ -34,7 +34,7 @@ def estimate_ratios():
     models.XENONnT_O1_drate.load_weights()
     models.XENONnT_O1_s1s2.load_weights()
 
-    logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
+    logratios1D, logratios2D = caddena.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
 
     return logratios1D, logratios2D
 

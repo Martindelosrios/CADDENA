@@ -6,23 +6,22 @@ with open("README.md", "r") as fp:
 REQUIREMENTS = ["numpy", "matplotlib", "swyft==0.4.4", "h5py", "scipy", "torch"]
 
 setup(
-    name="BATMAN",
+    name="CADDENA",
     version="0.1",
-    description="BAyesian Toolkit for Machine learning \
-                 ANalysis of direct detection experiments.",
+    description="Combined ANalysis of Direct Detection Experiments.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     author="Martin de los Rios, Andres Perez & David Cerdeño",
     author_email=" martindelosrios13@gmail.com ",
-    url=" https://github.com/martindelosrios/BATMAN",
+    url=" https://github.com/martindelosrios/CADDENA",
     py_modules=["ez_setup"],
-    packages=["BATMAN", "BATMAN.dataset"],
+    packages=["CADDENA", "CADDENA.dataset"],
     #    exclude_package_data={"": ["tests"]},
     include_package_data=True,  # < - - - - - -- solo si hay datos
-    package_data={"BATMAN": ["dataset/*"]},
+    package_data={"CADDENA": ["dataset/*"]},
     license="The MIT License",
     install_requires=REQUIREMENTS,
-    keywords=["BATMAN", "Dark matter"],
+    keywords=["CADDENA", "Dark matter"],
     classifiers=[
         " Development Status :: 4 - Beta",
         " Intended Audience :: Education",

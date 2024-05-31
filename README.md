@@ -1,10 +1,10 @@
-# BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
+# CADDENA (Combined ANalysis for Direct Detection Experiments) pacakage
 <!-- README.md -->
 ![cov](.badges/coverage.svg)
 [![python](.badges/python.svg)](https://www.python.org/downloads/release/python-380/)
 [![Documentation Status](https://readthedocs.org/projects/batman-rtd/badge/?version=latest)](https://batman-rtd.readthedocs.io/en/latest/?badge=latest)
 
-![logo](https://github.com/Martindelosrios/BATMAN/blob/master/.badges/LOGO.png)
+![logo](https://github.com/Martindelosrios/CADDENA/blob/master/.badges/LOGO.png)
 ## Installation
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
@@ -21,7 +21,7 @@ Soon you will be able to do
 
 ## Tutorial
 
-In [Examples](https://github.com/Martindelosrios/BATMAN/tree/master/EXAMPLES) you can find some examples to start playing with BATMAN
+In [Examples](https://github.com/Martindelosrios/CADDENA/tree/master/EXAMPLES) you can find some examples to start playing with BATMAN
 
 ## Developed by:
 

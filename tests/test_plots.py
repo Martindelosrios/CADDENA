@@ -1,4 +1,4 @@
-from BATMAN import batman, models
+from CADDENA import caddena, models
 import numpy as np
 import h5py
 from importlib_resources import files
@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def doplots():
-    ref = files("BATMAN") / "dataset/"
+    ref = files("CADDENA") / "dataset/"
     DATA_PATH = str(ref)
     with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
       x_norm_rate  = data['x_norm_rate'][()]
@@ -35,10 +35,10 @@ def doplots():
     models.XENONnT_O1_drate.load_weights()
     models.XENONnT_O1_s1s2.load_weights()
 
-    logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
+    logratios1D, logratios2D = caddena.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
 
-    ax1 = batman.plot1d([logratios1D[0]], pars_prior, pars_true, par = 0, pars_min = pars_min, pars_max = pars_max)
-    ax2 = batman.plot2d(logratios2D, pars_prior, pars_true, fill = True, line = True, linestyle = 'solid', color = 'black', pars_min = pars_min, pars_max = pars_max)
+    ax1 = caddena.plot1d([logratios1D[0]], pars_prior, pars_true, par = 0, pars_min = pars_min, pars_max = pars_max)
+    ax2 = caddena.plot2d(logratios2D, pars_prior, pars_true, fill = True, line = True, linestyle = 'solid', color = 'black', pars_min = pars_min, pars_max = pars_max)
     
     return ax1, ax2
 
