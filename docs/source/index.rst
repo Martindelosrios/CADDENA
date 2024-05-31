@@ -1,7 +1,7 @@
 CADDENA (Combined Analysis of Direct Detection Experiments) pacakage
 ----------------------------------------------------------------
 
-.. figure:: ../../.badges/LOGO.png
+.. figure:: ../../.badges/LOGO.jpg
 
 .. figure:: ../../.badges/coverage.svg
 .. figure:: ../../.badges/python.svg
