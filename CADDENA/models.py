@@ -15,7 +15,7 @@ else:
 
 # Dataset for testing and loading previously trained models
 
-ref = files("BATMAN") / "dataset/"
+ref = files("CADDENA") / "dataset/"
 DATA_PATH = str(ref)
 with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
     x_norm_rate = data["x_norm_rate"][()]
