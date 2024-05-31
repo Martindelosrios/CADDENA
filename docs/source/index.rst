@@ -1,4 +1,4 @@
-CADDENA (Combined Analysis of Direct Detection Experiments) pacakage
+CADDENA (Combined Analysis of Direct Detection Experiments) pacakag
 ----------------------------------------------------------------
 
 .. figure:: ../../.badges/LOGO.jpg
