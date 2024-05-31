@@ -9,15 +9,15 @@
 
 As this is a dev version for installing BATMAN package you have to download the source doing:
 
-`git clone https://github.com/Martindelosrios/BATMAN.git`
+`git clone https://github.com/Martindelosrios/CADDENA.git`
 
-Then, in the BATMAN directory just do
+Then, in the CADDENA directory just do
 
 `pip install .`
 
 Soon you will be able to do
 
-`pip install BATMAN`
+`pip install CADDENA`
 
 ## Tutorial
 
