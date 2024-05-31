@@ -3,7 +3,7 @@ import swyft
 import torch
 from importlib_resources import files
 
-from BATMAN.batman import Model
+from CADDENA.caddena import Model
 
 # Check if gpu is available
 if torch.cuda.is_available():
