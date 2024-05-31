@@ -7,7 +7,7 @@ CADDENA (Combined Analysis of Direct Detection Experiments) pacakage
 .. figure:: ../../.badges/python.svg
     :target: https://www.python.org/downloads/release/python-380/
 .. figure:: https://readthedocs.org/projects/caddena-rtd/badge/?version=latest
-    :target: https://caddena-rtd.readthedocs.io/en/latest/?badge=latest
+    :target: https://caddena-rtd.readthedocs.io/en/latest/
 
 
 Welcome to CADDENA! 
