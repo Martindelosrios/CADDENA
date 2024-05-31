@@ -11,7 +11,7 @@ First we need to load some needed libraries
 
 .. code-block:: python
 
-    from BATMAN import batman, models
+    from CADDENA import caddena, models
     import numpy as np
     import matplotlib.pyplot as plt
     import matplotlib as mpl
@@ -28,7 +28,7 @@ You can load your own data, or load the testset used in XXXX.XXXXX
 
 .. code-block:: python
 
-    ref = files("BATMAN") / "dataset/"
+    ref = files("CADDENA") / "dataset/"
     DATA_PATH = str(ref)
     with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
       x_norm_rate  = data['x_norm_rate'][()]
@@ -43,7 +43,7 @@ You can load your own data, or load the testset used in XXXX.XXXXX
       x_max_drate = data.attrs["x_max_drate"]
     
 
-Now we can start playing with BATMAN!!!
+Now we can start playing with CADDENA!!!
 
 Let's pick some random synthetic observation from the dataset:
 
@@ -94,7 +94,7 @@ And finally we can compute the likelihood-to-evidence ratios
 
 .. code-block:: python
 
-    logratios1D, logratios2D = batman.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
+    logratios1D, logratios2D = caddena.ratio_estimation([x_obs_rate, x_obs_drate, x_obs_s1s2], pars_prior, [models.XENONnT_O1_rate, models.XENONnT_O1_drate, models.XENONnT_O1_s1s2])
     
 
 #. The first argument is a list with the observation that will be analyzed.
@@ -105,4 +105,4 @@ And finally we can compute the likelihood-to-evidence ratios
 and so on, so they need to have the correct shape!!`
 
 
-You can also check and play with this example in `google colab <https://github.com/Martindelosrios/BATMAN/blob/master/EXAMPLES/Example_1_colab.ipynb>`_
+You can also check and play with this example in `google colab <https://github.com/Martindelosrios/CADDENA/blob/master/EXAMPLES/Example_1_colab.ipynb>`_

@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'BATMAN'
+project = 'CADDENA'
 copyright = '2024'
 author = 'Martín de los Rios'
 
@@ -32,7 +32,7 @@ extensions = [
     # Add more extensions as needed
 ]
 
-autoapi_dirs = ['../../BATMAN']
+autoapi_dirs = ['../../CADDENA']
 autoapi_file_patterns = ['*.py']
 autoapi_ignore = ['dataset/']
 

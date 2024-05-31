@@ -1,4 +1,4 @@
-BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
+CADDENA (Combined Analysis of Direct Detection Experiments) pacakage
 ----------------------------------------------------------------
 
 .. figure:: ../../.badges/LOGO.png
@@ -6,18 +6,18 @@ BATMAN (BAyesian Toolkit for Machine learning ANalysis) pacakage
 .. figure:: ../../.badges/coverage.svg
 .. figure:: ../../.badges/python.svg
     :target: https://www.python.org/downloads/release/python-380/
-.. figure:: https://readthedocs.org/projects/batman-rtd/badge/?version=latest
-    :target: https://batman-rtd.readthedocs.io/en/latest/?badge=latest
+.. figure:: https://readthedocs.org/projects/caddena-rtd/badge/?version=latest
+    :target: https://caddena-rtd.readthedocs.io/en/latest/?badge=latest
 
 
-Welcome to BATMAN! 
+Welcome to CADDENA! 
 
 This is a code for analysing dark matter direct detection experiment
 with Bayesian statistic using Machine Learning tools.
 
 This code is presented in arxiv XXXX.XXXX and is build on top of `SWYFT <https://github.com/undark-lab/swyft>`_.
 
-The main goal of BATMAN is to estimate the full posterior distribution
+The main goal of CADDENA is to estimate the full posterior distribution
 of some interesting parameter given new data :math:`P(\Theta|X)`!
 
 This is done using the `TMNRE <https://arxiv.org/abs/2111.08030>`_ 

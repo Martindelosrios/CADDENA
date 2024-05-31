@@ -6,24 +6,24 @@ Usage
 Installation
 ------------
 
-To use BATMAN, we first need to install it from github using pip:
+To use CADDENA, we first need to install it from github using pip:
 
 .. code-block:: console
 
-   $ git clone https://github.com/Martindelosrios/BATMAN.git
-   $ cd BATMAN
+   $ git clone https://github.com/Martindelosrios/CADDENA.git
+   $ cd CADDENA
    (.venv) $ pip install .
 
 Loading pre-trained models
 --------------------------
 
-Some pre-trained models are saved in ``batman.models`` 
+Some pre-trained models are saved in ``caddena.models`` 
 (you can check the list of available models in :ref:`Models`).
 These models can be loaded doing:
 
 .. code-block:: python
 
-    from BATMAN import batman, models
+    from CADDENA import caddena, models
 
 Before using them you have to load the weights obtained in the
 training published on arxiv XXXX.XXXX. For a given model you can do:
@@ -38,7 +38,7 @@ you can compute the likelihood-to-evidence ratios doing:
 
 .. code-block:: python
 
-    batman.ratio_estimation([x], pars_prior, [model])
+    caddena.ratio_estimation([x], pars_prior, [model])
     
 
 where ``x`` is the observtion to be analysed (that must have the shape for which the model was trained)
@@ -49,4 +49,4 @@ You can also estimate the ratios for a list of observations and models at the sa
 
 .. code-block:: python
 
-    batman.ratio_estimation([x1, x2, ...], pars_prior, [model1, model2, ...])
+    caddena.ratio_estimation([x1, x2, ...], pars_prior, [model1, model2, ...])
