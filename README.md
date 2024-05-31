@@ -7,7 +7,7 @@
 ![logo](https://github.com/Martindelosrios/CADDENA/blob/master/.badges/LOGO.jpg)
 ## Installation
 
-As this is a dev version for installing BATMAN package you have to download the source doing:
+As this is a dev version for installing CADDENA package you have to download the source doing:
 
 `git clone https://github.com/Martindelosrios/CADDENA.git`
 
@@ -21,7 +21,7 @@ Soon you will be able to do
 
 ## Tutorial
 
-In [Examples](https://github.com/Martindelosrios/CADDENA/tree/master/EXAMPLES) you can find some examples to start playing with BATMAN
+In [Examples](https://github.com/Martindelosrios/CADDENA/tree/master/EXAMPLES) you can find some examples to start playing with CADDENA
 
 ## Developed by:
 
