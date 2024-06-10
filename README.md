@@ -5,6 +5,7 @@
 [![Documentation Status](https://readthedocs.org/projects/caddena-rtd/badge/?version=latest)](https://caddena-rtd.readthedocs.io/en/latest/)
 
 ![logo](https://github.com/Martindelosrios/CADDENA/blob/master/.badges/LOGO.jpg)
+* Dedicated to the Argentinian punk rock band CADENA PERPETUA
 ## Installation
 
 As this is a dev version for installing CADDENA package you have to download the source doing:
