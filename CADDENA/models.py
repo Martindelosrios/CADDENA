@@ -38,7 +38,6 @@ dm_test_s1s2 = swyft.SwyftDataModule(
     samples_test_s1s2, fractions=[0.0, 0.0, 1], batch_size=32
 )
 
-
 # Creating model for XENON nT with rate
 class NetworkRate(swyft.SwyftModule):
     def __init__(self):
@@ -63,6 +62,8 @@ trainer_rate = swyft.SwyftTrainer(
 network_rate = NetworkRate()
 
 comments = r"""
+    XENONnT_O1_rate:
+
     This model was trained using synthetic data of the expected total
     rate in xenonNT for dark matter particles with O(1)
     with :math:`M_{dm} \in [6-1000] GeV`, :math:`\sigma = [10^{-50}-10^{-43}] cm^{2}`
@@ -77,8 +78,8 @@ XENONnT_O1_rate = Model(
     network_rate,
     trainer_rate,
     path_to_weights=DATA_PATH + "/O1_rate.ckpt",
-    comments=comments,
     test_data=dm_test_rate,
+    comments=comments
 )
 
 # Creating drate model
@@ -126,6 +127,8 @@ trainer_drate = swyft.SwyftTrainer(
 network_drate = NetworkDrate()
 
 comments = """
+    XENONnT_O1_drate:
+
     This model was trained using synthetic data of the expected differential
     rate in xenonNT for dark matter particles with O(1)
     with :math:`M_{dm} in [6-1000] GeV`, :math:`sigma = [10^{-50}-10^{-43}] cm^{2}`
@@ -141,8 +144,8 @@ XENONnT_O1_drate = Model(
     trainer_drate,
     path_to_weights=DATA_PATH
     + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
-    comments=comments,
     test_data=dm_test_drate,
+    comments=comments
 )
 
 # Let's create the S1S2 model
@@ -194,6 +197,8 @@ trainer_s1s2 = swyft.SwyftTrainer(
 network_s1s2 = NetworkS1s2()
 
 comments = """
+    XENONnT_O1_s1s2:
+
     This model was trained using synthetic data of the expected S1S2
     signal in xenonNT for dark matter particles with O(1)
     with :math:`M_{dm} in [6-1000] GeV`, :math:`sigma = [10^{-50}-10^{-43}] cm^{2}`
@@ -209,6 +214,6 @@ XENONnT_O1_s1s2 = Model(
     trainer_s1s2,
     path_to_weights=DATA_PATH
     + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
-    comments=comments,
     test_data=dm_test_s1s2,
+    comments=comments
 )

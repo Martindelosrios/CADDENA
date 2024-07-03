@@ -6,8 +6,21 @@ import swyft
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
 
+class InstanceTracker(type):
+    def __init__(cls, name, bases, attrs):
+        super().__init__(name, bases, attrs)
+        cls._instances = []
 
-class Model:
+    def __call__(cls, *args, **kwargs):
+        instance = super().__call__(*args, **kwargs)
+        cls._instances.append(instance)
+        return instance
+
+    def available_models(cls):
+        return cls._instances
+
+
+class Model(metaclass=InstanceTracker):
     """
     Class to save trained models
 
@@ -22,7 +35,7 @@ class Model:
 
     path_to_weigths: Path to pre-trained weights.
 
-    trained_flag: Boolean that marks if the model is already trained.
+    _trained_flag: Boolean that marks if the model is already trained.
 
     comments: str. with all the information of the trained network.
 
@@ -34,20 +47,20 @@ class Model:
         network,
         trainer,
         path_to_weights=None,
-        trained_flag=False,
-        comments="No added comments",
+        _trained_flag=False,
         test_data=None,
+        comments="No added comments"
     ):
         self.network = network
         self.trainer = trainer
         self.path_to_weights = path_to_weights
-        self.trained_flag = trained_flag
+        self._trained_flag = _trained_flag
         self.test_data = test_data
         self.comments = comments
 
     def __repr__(self):
         output = self.comments
-        if self.trained_flag is False:
+        if self._trained_flag is False:
             output = output + "\n NOT TRAINED \n"
         else:
             output = output + "\n READY TO USE :) \n"
@@ -73,9 +86,16 @@ class Model:
             test_data = self.test_data
 
         self.trainer.test(self.network, test_data, ckpt_path=path_to_weights)
-        self.trained_flag = True
+        self._trained_flag = True
         self.path_to_weights = path_to_weights
         return None
+
+    def trained_flag(self):
+        if self._trained_flag: 
+            print('The model is trained and ready to use :)')
+        else:
+            print('The model was not trained yet and can not be used :(')
+
 
 
 def ratio_estimation(obs: list, prior: np.array, models: list) -> list:
