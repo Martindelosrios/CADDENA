@@ -6,6 +6,7 @@ import swyft
 from scipy.integrate import simps, trapezoid
 from scipy.interpolate import CloughTocher2DInterpolator
 
+
 class InstanceTracker(type):
     def __init__(cls, name, bases, attrs):
         super().__init__(name, bases, attrs)
@@ -49,7 +50,7 @@ class Model(metaclass=InstanceTracker):
         path_to_weights=None,
         _trained_flag=False,
         test_data=None,
-        comments="No added comments"
+        comments="No added comments",
     ):
         self.network = network
         self.trainer = trainer
@@ -91,11 +92,10 @@ class Model(metaclass=InstanceTracker):
         return None
 
     def trained_flag(self):
-        if self._trained_flag: 
-            print('The model is trained and ready to use :)')
+        if self._trained_flag:
+            print("The model is trained and ready to use :)")
         else:
-            print('The model was not trained yet and can not be used :(')
-
+            print("The model was not trained yet and can not be used :(")
 
 
 def ratio_estimation(obs: list, prior: np.array, models: list) -> list:

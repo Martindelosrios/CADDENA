@@ -38,6 +38,7 @@ dm_test_s1s2 = swyft.SwyftDataModule(
     samples_test_s1s2, fractions=[0.0, 0.0, 1], batch_size=32
 )
 
+
 # Creating model for XENON nT with rate
 class NetworkRate(swyft.SwyftModule):
     def __init__(self):
@@ -79,7 +80,7 @@ XENONnT_O1_rate = Model(
     trainer_rate,
     path_to_weights=DATA_PATH + "/O1_rate.ckpt",
     test_data=dm_test_rate,
-    comments=comments
+    comments=comments,
 )
 
 # Creating drate model
@@ -145,7 +146,7 @@ XENONnT_O1_drate = Model(
     path_to_weights=DATA_PATH
     + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
     test_data=dm_test_drate,
-    comments=comments
+    comments=comments,
 )
 
 # Let's create the S1S2 model
@@ -215,5 +216,5 @@ XENONnT_O1_s1s2 = Model(
     path_to_weights=DATA_PATH
     + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
     test_data=dm_test_s1s2,
-    comments=comments
+    comments=comments,
 )
