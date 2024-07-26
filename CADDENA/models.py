@@ -18,10 +18,28 @@ else:
 ref = files("CADDENA") / "dataset/"
 DATA_PATH = str(ref)
 with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
-    x_norm_rate = data["x_norm_rate"][()]
-    x_norm_drate = data["x_norm_drate"][()]
-    x_norm_s1s2 = data["x_norm_s1s2"][()]
-    pars_norm = data["pars_norm"][()]
+    rate_testset = data["rate_testset"][()]
+    drate_testset = data["diff_rate_testset"][()]
+    s1s2_testset = data["s1s2_testset"][()]
+    norm_testset = data["norm_testset"][()]
+    pars_min = data.attrs["pars_min"]
+    pars_max = data.attrs["pars_max"]
+    x_min_rate = data.attrs["x_min_rate"]
+    x_max_rate = data.attrs["x_max_rate"]
+    x_min_drate = data.attrs["x_min_drate"]
+    x_max_drate = data.attrs["x_max_drate"]
+    x_max_s1s2 = data.attrs["x_max_s1s2"]
+
+pars_norm = (pars_testset - pars_min) / (pars_max - pars_min)
+
+x_norm_rate = np.log10(rate_testset)
+x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
+
+x_norm_drate = np.log10(drate_testset)
+x_norm_drate = (x_norm_drate - x_min_drate) / (x_max_drate - x_min_drate)
+
+x_norm_s1s2 = (s1s2_testset)
+x_norm_s1s2 = x_norm_s1s2 / x_max_s1s2
 
 samples_test_rate = swyft.Samples(x=x_norm_rate, z=pars_norm)
 dm_test_rate = swyft.SwyftDataModule(
