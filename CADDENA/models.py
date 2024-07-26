@@ -2,6 +2,7 @@ import h5py
 import swyft
 import torch
 from importlib_resources import files
+import numpy as np
 
 from CADDENA.caddena import Model
 
@@ -18,6 +19,7 @@ else:
 ref = files("CADDENA") / "dataset/"
 DATA_PATH = str(ref)
 with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
+    pars_testset = data["pars_testset"][()]
     rate_testset = data["rate_testset"][()]
     drate_testset = data["drate_testset"][()]
     s1s2_testset = data["s1s2_testset"][()]
@@ -32,7 +34,9 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
 pars_norm = (pars_testset - pars_min) / (pars_max - pars_min)
 
 x_norm_rate = np.log10(rate_testset)
-x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
+#x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
+x_norm_rate = x_norm_rate / x_max_rate
+x_norm_rate = x_norm_rate.reshape(len(x_norm_rate), 1)
 
 x_norm_drate = np.log10(drate_testset)
 x_norm_drate = (x_norm_drate - x_min_drate) / (x_max_drate - x_min_drate)

@@ -8,6 +8,7 @@ def estimate_ratios():
     ref = files("CADDENA") / "dataset/"
     DATA_PATH = str(ref)
     with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
+        pars_testset = data["pars_testset"][()]
         rate_testset = data["rate_testset"][()]
         drate_testset = data["drate_testset"][()]
         s1s2_testset = data["s1s2_testset"][()]
@@ -22,8 +23,10 @@ def estimate_ratios():
     pars_norm = (pars_testset - pars_min) / (pars_max - pars_min)
     
     x_norm_rate = np.log10(rate_testset)
-    x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
-    
+    #x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
+    x_norm_rate = x_norm_rate / x_max_rate
+    x_norm_rate = x_norm_rate.reshape(len(x_norm_rate), 1)
+ 
     x_norm_drate = np.log10(drate_testset)
     x_norm_drate = (x_norm_drate - x_min_drate) / (x_max_drate - x_min_drate)
     
@@ -35,7 +38,7 @@ def estimate_ratios():
     print(i)
     
     pars_true   = pars_norm[i,:]
-    x_obs_rate  = x_norm_rate[i,:]
+    x_obs_rate  = x_norm_rate[i].reshape(1)
     x_obs_drate = x_norm_drate[i,:]
     x_obs_s1s2  = x_norm_s1s2[i,:].reshape(1,96,96)
     
