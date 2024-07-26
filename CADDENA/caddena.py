@@ -40,7 +40,8 @@ class Model(metaclass=InstanceTracker):
 
     comments: str. with all the information of the trained network.
 
-    test_data: swyft.lightning.data.SwyftDataModule object with the data that will be used for testing the model.
+    test_data: swyft.lightning.data.SwyftDataModule object with the data that will
+                be used for testing the model.
     """
 
     def __init__(
@@ -76,7 +77,8 @@ class Model(metaclass=InstanceTracker):
 
         path_to_weights: Path to the pre-saved weights.
 
-        test_data: swyft.lightning.data.SwyftDataModule object with the data that will be used to test the model.
+        test_data: swyft.lightning.data.SwyftDataModule object with the data that
+                    will be used to test the model.
         """
         print("Training model...")
         if path_to_weights is None:

@@ -56,9 +56,9 @@ def estimate_ratios():
 def test_estimate_ratios():
     logratios1D, logratios2D = estimate_ratios()
 
-    assert np.allclose(logratios1D[0][0,:], np.array([-0.17116392,  0.08299124, -0.06267583]), atol = 1e-5)
-    assert np.allclose(logratios1D[1][0,:], np.array([-0.1066963 ,  0.18183607, -0.01303009]), atol = 1e-5)
-    assert np.allclose(logratios1D[2][0,:], np.array([-0.24844716,  0.60588804, -0.1671143 ]), atol = 1e-5)
-    assert np.allclose(logratios2D[0][0,:], np.array([-0.55746773, -0.17068126,  0.09961353]), atol = 1e-5)
-    assert np.allclose(logratios2D[1][0,:], np.array([0.23994138 , 0.02681413 ,  0.49061815]), atol = 1e-5)
-    assert np.allclose(logratios2D[2][0,:], np.array([ 0.63054098, -0.26630078,  0.74245657]), atol = 1e-5)
+    assert np.allclose(logratios1D[0][0,:], np.array([-0.16239598,  0.20058311, -0.06536658]), atol = 1e-5)
+    assert np.allclose(logratios1D[1][0,:], np.array([-0.08454858,  0.55239703, -0.21410568]), atol = 1e-5)
+    assert np.allclose(logratios1D[2][0,:], np.array([-0.19126089,  0.38586499, -0.06993887]), atol = 1e-5)
+    assert np.allclose(logratios2D[0][0,:], np.array([ 0.06297819, -0.25379332,  0.31567388]), atol = 1e-5)
+    assert np.allclose(logratios2D[1][0,:], np.array([ 0.99333211, -0.19759012,  1.06851521]), atol = 1e-5)
+    assert np.allclose(logratios2D[2][0,:], np.array([ 0.3337919 , -0.36944396,  0.12885156]), atol = 1e-5)

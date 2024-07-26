@@ -1,8 +1,8 @@
 import h5py
+import numpy as np
 import swyft
 import torch
 from importlib_resources import files
-import numpy as np
 
 from CADDENA.caddena import Model
 
@@ -34,14 +34,14 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
 pars_norm = (pars_testset - pars_min) / (pars_max - pars_min)
 
 x_norm_rate = np.log10(rate_testset)
-#x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
+# x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
 x_norm_rate = x_norm_rate / x_max_rate
 x_norm_rate = x_norm_rate.reshape(len(x_norm_rate), 1)
 
 x_norm_drate = np.log10(drate_testset)
 x_norm_drate = (x_norm_drate - x_min_drate) / (x_max_drate - x_min_drate)
 
-x_norm_s1s2 = (s1s2_testset)
+x_norm_s1s2 = s1s2_testset
 x_norm_s1s2 = x_norm_s1s2 / x_max_s1s2
 
 samples_test_rate = swyft.Samples(x=x_norm_rate, z=pars_norm)
@@ -164,8 +164,7 @@ comments = """
 XENONnT_O1_drate = Model(
     network_drate,
     trainer_drate,
-    path_to_weights=DATA_PATH
-    + "/O1_drate.ckpt",
+    path_to_weights=DATA_PATH + "/O1_drate.ckpt",
     test_data=dm_test_drate,
     comments=comments,
 )
@@ -234,8 +233,7 @@ comments = """
 XENONnT_O1_s1s2 = Model(
     network_s1s2,
     trainer_s1s2,
-    path_to_weights=DATA_PATH
-    + "/O1_s1s2.ckpt",
+    path_to_weights=DATA_PATH + "/O1_s1s2.ckpt",
     test_data=dm_test_s1s2,
     comments=comments,
 )
