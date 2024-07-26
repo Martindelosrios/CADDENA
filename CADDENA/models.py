@@ -21,7 +21,6 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
     rate_testset = data["rate_testset"][()]
     drate_testset = data["drate_testset"][()]
     s1s2_testset = data["s1s2_testset"][()]
-    norm_testset = data["norm_testset"][()]
     pars_min = data.attrs["pars_min"]
     pars_max = data.attrs["pars_max"]
     x_min_rate = data.attrs["x_min_rate"]
