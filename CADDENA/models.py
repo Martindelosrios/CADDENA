@@ -144,7 +144,7 @@ XENONnT_O1_drate = Model(
     network_drate,
     trainer_drate,
     path_to_weights=DATA_PATH
-    + "/O1_drate_epoch=22_val_loss=-1.51_train_loss=-1.42.ckpt",
+    + "/O1_drate.ckpt",
     test_data=dm_test_drate,
     comments=comments,
 )
@@ -214,7 +214,7 @@ XENONnT_O1_s1s2 = Model(
     network_s1s2,
     trainer_s1s2,
     path_to_weights=DATA_PATH
-    + "/O1_s1s2_epoch=4_val_loss=-1.59_train_loss=-1.79-v2.ckpt",
+    + "/O1_s1s2.ckpt",
     test_data=dm_test_s1s2,
     comments=comments,
 )
