@@ -1,4 +1,4 @@
-# CADDENA (Combined ANalysis for Direct Detection Experiments) pacakage
+# CADDENA (Combined ANalysis for Direct Detection Experiments) package
 <!-- README.md -->
 ![cov](.badges/coverage.svg)
 [![python](.badges/python.svg)](https://www.python.org/downloads/release/python-380/)
