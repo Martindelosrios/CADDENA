@@ -34,8 +34,7 @@ with h5py.File(DATA_PATH + "/testset.h5", "r") as data:
 pars_norm = (pars_testset - pars_min) / (pars_max - pars_min)
 
 x_norm_rate = np.log10(rate_testset)
-# x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
-x_norm_rate = x_norm_rate / x_max_rate
+x_norm_rate = (x_norm_rate - x_min_rate) / (x_max_rate - x_min_rate)
 x_norm_rate = x_norm_rate.reshape(len(x_norm_rate), 1)
 
 x_norm_drate = np.log10(drate_testset)
